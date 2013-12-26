@@ -1,0 +1,45 @@
+form {
+	width: 50%;
+	margin: 3em auto 0 auto;
+	padding: 1em;
+}
+
+form label {
+	display: block;
+	padding-bottom: 0.2em;
+}
+
+form input[type=text], form input[type=email], form input[type=password] {
+	width: 90%;
+	padding: 0.5em;
+	font: 1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+form input[type=date] {
+	width: 32%;
+	padding: 0.5em;
+	font: 1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+form div {
+	padding: 0.5em 0;
+}
+
+form input[type=submit] {
+	padding: 0.5em;
+	background-color: #574239;
+	border: 1px outset #8f6e61;
+	font: 0.8em "Lucida Grande", Lucida, Verdana, sans-serif;
+	color: #fffeff;
+}
+
+form a {
+	color: #4d7291;
+	text-decoration: none;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
+form span {
+	font-size: 0.8em;
+}

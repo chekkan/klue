@@ -1,0 +1,11 @@
+#dropbox {
+	border: 3px dashed #ccc;
+	width: 40%;
+	margin-top: 1em;
+	min-height: 100px;
+	min-width: 200px;
+}
+
+#dropbox p {
+	text-align: center;
+}

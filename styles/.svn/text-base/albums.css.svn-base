@@ -1,0 +1,15 @@
+ul#showcase {
+	padding: 1em;
+	background-color: #f4f6f6;
+	margin: 1em 0;
+	list-style-type: none;
+}
+
+li {
+	padding: 1em;
+	display: inline;
+}
+
+img {
+	border: 3px solid #ccc;
+}

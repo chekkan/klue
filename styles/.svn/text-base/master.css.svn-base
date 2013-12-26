@@ -1,0 +1,110 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	width: 820px;
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+header {
+	background-color: #d3e1f1;
+	text-align: center;
+	padding: 1em;
+}
+
+h2 {
+	padding: 0.5em 0;
+}
+
+form {
+	background-color: #fafaf5;
+	padding: 1em;
+}
+form div {
+	padding: 0.5em 0;
+}
+form label {
+	display: block;
+	padding-bottom: 0.2em;
+}
+form input[type=text], form input[type=email], form input[type=password] {
+	width: 96%;
+	padding: 0.5em;
+	font: 1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+form input[type=date] {
+	width: 25%;
+	padding: 0.5em;
+	font: 1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+textarea {
+	width: 96%;
+	height: 10em;
+	padding: 0.5em;
+	font: 1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+form input[type=submit] {
+	padding: 0.5em;
+	background-color: #574239;
+	border: 1px outset #8f6e61;
+	font: 0.8em "Lucida Grande", Lucida, Verdana, sans-serif;
+	color: #fffeff;
+}
+form p.error {
+	font-size: 0.8em;
+	color: #9b2d17;
+}
+
+footer {
+	clear: both;
+	font-size: 0.8em;
+	color: #909090;
+	text-align: center;
+	border-top: 1px solid #909090;
+	margin-top: 3em;
+	padding: 0.4em 0;
+}
+
+nav {
+	background-color: #edefef;
+	padding: 1em 0;
+	font-size: 0.8em;
+}
+nav li {
+	padding: 1em;
+	display: inline;
+}
+nav li:hover {
+	background-color: #dee0e0;
+	text-shadow: #4a4b4b 0.5px 0.5px 1px;
+}
+nav li a {
+	padding: 1em;
+	text-decoration: none;
+	color: #5a5a5a;
+}
+div#breadcrumb {
+	padding: 0.5em 1em;
+	margin: 1em 0;
+	font-size: 0.7em;
+	border: 1px dashed #909090;
+}
+div#breadcrumb a {
+	color: #4d7291;
+	text-decoration: none;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+a.button {
+	padding: 0.5em;
+	background-color: #574239;
+	border: 1px outset #8f6e61;
+	font: 0.8em "Lucida Grande", Lucida, Verdana, sans-serif;
+	color: #fffeff;
+	text-decoration: none;
+	display: inline-block;
+}

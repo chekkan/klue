@@ -1,0 +1,152 @@
+body {
+	margin: 0;
+	/*font: 1.2em 'Varela', sans-serif;*/
+	font: 1.2em 'Magra', sans-serif;
+	background-color: #eef2e3;
+}
+a {
+	color: #708ec6;
+}
+h2 {
+	margin: 0;
+	padding: 1em 0;
+}
+header {
+	background-color: #2e3438;
+	height: 30px;
+	padding: 0.4em;
+}
+header span#header_left {
+	display: block;
+	float: left;
+	width: 70%;
+}
+header span#header_right {
+	display: block;
+	width: 30%;
+	text-align: right;
+	float: left;
+}
+header span#header_left h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+	color: #f5f5f5;
+	display: inline;
+}
+header span#header_left span a, header span#header_right span a {
+	color: #c7c6c8;
+	font-size: 0.8em;
+}
+
+nav {
+	padding: 1em 30px 0;
+	background-color: #a2ce5b;
+}
+nav ul {
+	padding: 0;
+	width: 900px;
+	margin: 0 auto;
+
+}
+nav li {
+	display: inline;
+}
+nav li a {
+	display: inline-block;
+	padding: 0.5em 10px;
+	color: #2e2e2e;
+	font-size: 0.8em;
+	text-decoration: none;
+}
+nav li a.current {
+	background-color: #fff;
+	font-weight: bold;
+}
+nav li a.current:hover {
+	color: #2e2e2e;
+}
+nav li a:hover {
+	color: #fff;
+}
+
+#content {
+	margin: 0 auto;
+	padding: 0;
+	background-color: #edf2f5;
+	width: 900px;
+	border-right: 1px solid #dce3e8;
+}
+
+#main_content {
+	padding: 0 20px 20px 20px;
+	width: 679px;
+	float: left;
+	background-color: #fff;
+	border-right: 1px solid #dce3e8;
+	font-size: 0.8em;
+}
+
+#side_bar {
+	width: 180px;
+	float: right;
+	font-size: 0.8em;
+}
+
+#side_bar ul {
+	list-style-type: none;
+	padding: 0 2em 0 0;
+	margin: 1em 0;
+}
+
+#side_bar ul li {
+	padding: 1em;
+}
+
+#side_bar ul li a {
+	color: #6f87ac;
+	text-decoration: none;
+}
+
+#side_bar ul li.current {
+	background-color: #fff;
+}
+
+#side_bar ul li a:hover {
+	text-decoration: underline;
+}
+
+#page_heading {
+	text-align: center;
+	margin-bottom: 2em;
+}
+#page_heading h2 {
+	margin: 0;
+	padding: 1em 0 0;
+	text-align: center;
+	border-bottom: 2px solid #f8f8f8;
+}
+
+footer {
+	font-size: 0.8em;
+	text-align: center;
+}
+
+form p.error {
+	font-size: 1em;
+	color: #c31708;
+	margin-top: 0;
+}
+
+form div label {
+	font-size: 1em;
+	display: block;
+	padding: 0.4em 0;
+	font-weight: bold;
+}
+form div input[type="email"] {
+	width: 30%;
+}
+form div input[type="submit"] {
+	margin: 1em 0;
+}

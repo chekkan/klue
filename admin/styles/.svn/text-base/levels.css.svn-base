@@ -1,0 +1,29 @@
+#level_details {
+	width: 60%;
+	margin: 0 auto;
+	background-color: #fafafa;
+	border: 1px solid #ddd;
+	padding: 1em;
+}
+
+#level_details div span.title {
+	display: block;
+	width: 19%;
+	text-align: right;
+	float: left;
+	color: #aeaeb0;
+}
+
+#level_details div span.value {
+	display: block;
+	width: 78%;
+	float: right;
+	border-left: 1px solid #d5d4d9;
+	padding-left: 0.5em;
+}
+
+#level_details div span.value table tr td {
+	text-align: center;
+	padding: 0.3em;
+	font-size: 0.9em;
+}

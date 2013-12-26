@@ -1,0 +1,73 @@
+ul#events {
+	display: block;
+	clear: both;
+	float: left;
+	width: 100%;
+	margin: 0.5em 0;
+}
+
+ul#events li {
+	list-style-type: none;
+	padding: 0.1em 0;
+	clear: both;
+	display: table;
+	width: 100%;
+}
+
+ul#events span.date_container {
+	background-color: #f6f6f6;
+	display: block;
+	width: 8%;
+	float: left;
+	text-align: center;
+}
+
+ul#events span.event_container {
+	display: block;
+	width: 91%;
+	float: left;
+	padding: 1.6em 0 1.65em 0.5em;
+}
+ul#events span.event_container:hover {
+	background-color: #f6f6f6;
+}
+
+ul#events span.title {
+	display: block;
+	width: 93%;
+	float: left;
+	font-size: 1.5em;
+}
+
+ul#events span.title a {
+	color: #000;
+	text-decoration: none;
+}
+
+ul#events span.title a:hover {
+	text-decoration: underline;
+}
+
+ul#events span.venue {
+	color: #909090;
+	display: block;
+	width: 93%;
+	float: left;
+}
+
+ul#events span.date, ul#events span.month, ul#events span.year {
+	display: block;
+}
+
+ul#events span.date {
+	font-size: 2.5em;
+}
+
+ul#events span.month {
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+ul#events span.year {
+	font-size: 1.2em;
+}
