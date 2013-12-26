@@ -15,7 +15,7 @@ class Page {
 		$this->heading = $settings->site_name;
 	}
 	
-	public function header() {
+	public function header($currentItem) {
 		global $settings;
 			
 		if(empty($this->heading)) {
@@ -32,6 +32,7 @@ class Page {
 			<html>
 			<head>
 			<title>{$this->title}</title>
+			<link rel=\"stylesheet\" href=\"styles/bootstrap.css\" type=\"text/css\" media=\"screen\" title=\"Bootstrap\" charset=\"utf-8\" />
 			<link rel=\"stylesheet\" href=\"styles/master.css\" type=\"text/css\" media=\"screen\" title=\"Master StyleSheet\" charset=\"utf-8\" />";
 		foreach ($this->stylesheets as $link) {
 			$return .= "<link rel=\"stylesheet\" href=\"{$link}\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />";
@@ -43,43 +44,56 @@ class Page {
 		$return .= "
 			</head>
 			<body>
-				<header>
-					<h1>{$this->heading}</h1>
-				</header>";
-		$return .= $this->nav_bar();
+				<div class=\"container\">
+					<div class=\"row\">
+						<header>
+							<h1>{$this->heading}</h1>
+						</header>";
+		$return .= $this->nav_bar($currentItem);
 		
 		return $return;
 	}
 	
 	public function footer() {
 		$return = "<footer>
-				Powered by Craften Version 0.1 &alpha; from Reloadead &copy; 2011
+				Powered by Klue Version 0.1 &alpha; from Chekkan &copy; 2013
 			</footer>
+			</div></div>
 		</body>
 		</html>";
 		
 		return $return;
 	}
 	
-	public function nav_bar() {
-		$return = "<nav>
-				<ul>";
-		$return .= "<li><a href=\"index.php\">Home</a></li>";
-		$return .= "<li><a href=\"events.php\">Events</a></li>";
-		$return .= "<li><a href=\"news.php\">News</a></li>";
-		$return .= "<li><a href=\"albums.php\">Gallery</a></li>";
+	public function nav_bar($currentItem) {
+		
+		$navItems = array(
+			"Home" => "index.php",
+			"Events" => "events.php",
+			"News" => "news.php", 
+			"Gallery" => "albums.php");
+		// if user is logged in
 		if (isset($_SESSION['logged_in'])) {
-			$return .= "<li><a href=\"messages.php\">Messages</a></li>";
-			$return .= "<li><a href=\"profiles.php?id={$_SESSION['user_id']}\">Profile</a></li>";
+			$navItems["Messages"] = "messages.php";
+			$navItems["Profile"] = "profiles.php?id={$_SESSION['user_id']}";
 			// check if the user is an admin
-			if($_SESSION['user_level_id'] == 1) {
-				$return .= "<li><a href=\"admin/\">Administration</a></li>";
+			if ($_SESSION['user_level_id'] == 1) {
+				$navItems["Administrator"] = "admin/";
 			}
-			$return .= "<li><a href=\"logout.php\">Logout</a></li>";
+			$navItems["Logout"] = "logout.php";
+		} else {
+			$navItems["Login"] = "login.php";
+			$navItems["Register"] = "register.php";
 		}
-		else {
-			$return .= "<li><a href=\"login.php\">Login</a></li>";
-			$return .= "<li><a href=\"register.php\">Register</a></li>";
+		$return = "<nav class=\"navbar navbar-default\" role=\"navigation\">
+					<ul class=\"nav navbar-nav\">";
+		foreach ($navItems as $title => $url)
+		{
+			$return .= "<li";
+			if ($title == $currentItem) {
+				$return .= " class=\"active\"";
+			}
+			$return .= "><a href=\"{$url}\">{$title}</a></li>";
 		}
 					
 		$return .= "</ul></nav>";
@@ -87,14 +101,12 @@ class Page {
 	}
 	
 	public function breadcrumb($path) {
-		$return = "<div id=\"breadcrumb\">";
+		$return = "<ol class=\"breadcrumb\">";
 		foreach($path as $key => $value)
 		{
-			$return .= "<a href=\"{$value}\">{$key}</a> &gt; ";
+			$return .= "<li><a href=\"{$value}\">{$key}</a></li>";
 		}
-		// remove the last 6 words
-		$return = substr($return, 0, -6);
-		$return .= "</div>";
+		$return .= "</li></ol>";
 		return $return;
 	}
 	
