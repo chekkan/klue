@@ -5,6 +5,7 @@ require_once("lib/Page.php");
 require_once("lib/News.php");
 require_once("lib/User.php");
 require_once("lib/BlogComment.php");
+require_once("lib/FormHelper.php");
 
 if(isset($_GET['id'])) {
 	// save it to variable
@@ -60,45 +61,37 @@ if(isset($_GET['id'])) {
 				".date("d F Y", $news->time_posted)."
 			</span>";
 		echo "<p>{$news->message}</p>";
-		echo "<h3>Comments</h3>";
+
 		// load comments
 		$comments = BlogComment::find_by_blog($news->id);
+		echo "<section>
+				<h2>Comments</h2>";
+		$form = (isset($error_messages)) ? new FormHelper($error_messages) : new FormHelper();
+		echo $form->start($_SERVER['PHP_SELF']."?id=".$news->id);
+		echo $form->textarea(array("label" => "Comment", "name" => "message", "id" => "message"));
+		echo $form->end("Comment");
 		if(empty($comments)) {
 			echo "<p>No comments.</p>";
-		}
-		else {
-			echo "<ul>";
+		} else {
 			foreach ($comments as $comment) {
 				// get user details
 				$blog_user = User::find_by_id($comment->user_id);
-				echo "<li>{$comment->message}
-						<span class=\"comment_details\">
-							<a href=\"profiles.php?id={$blog_user->id}\">{$blog_user->full_name()}</a> on
-							{$comment->time_posted}
-						</span></li>";
+				echo "<article class=\"well\">
+						<header>
+							<div class=\"col-sm-6\">
+								<a href=\"profiles.php?id={$blog_user->id}\">{$blog_user->full_name()}</a>
+							</div>
+							<div class=\"col-sm-6 text-right\">{$comment->time_posted}</div>
+						</header>
+						<p>{$comment->message}</p>
+					</article>";
 			}
-			echo "</ul>";
 		}
-		?>
-		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$news->id}"; ?>" method="post">
-			<?php if (isset($error_messages['main'])) { 
-				echo "<p class=\"error_message\">{$error_messages['main']}</p>"; } 
-			?>
-			<div class="input">
-				<?php if (isset($error_messages['message'])) { 
-					echo "<p class=\"error_message\">{$error_messages['message']}</p>"; } 
-				?>
-				<label for="message">Comment</label>
-				<textarea name="message" id="message"></textarea>
-			</div>
-			<div class="input">
-				<input type="submit" name="comment" value="Comment" />
-			</div>
-		</form>
-		<?php
+		echo "</section>";
+
+		echo $page->footer();
 	}
-}
-else {
+} else {
 	$page = new Page();
 	$page->title = "News";
 	$page->heading = "Craften";

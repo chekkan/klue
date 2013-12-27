@@ -3,6 +3,9 @@
 require_once("Database.php");
 
 class Event {
+
+	protected static $table_name = "events";
+	protected static $db_fields = array();
 	
 	public $id;
 	public $title;

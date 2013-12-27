@@ -26,6 +26,21 @@ class News extends Table{
 		$result = $database->query($sql);
 		return ($database->num_rows($result) == 1) ? true : false;
 	}
+
+	public function create() {
+		global $database;
+		$this->time_posted = time();
+		$sql = "INSERT INTO ".self::$table_name."(title, message, user_id, draft, time_posted)
+				VALUES(\"{$this->title}\", \"{$this->message}\", {$this->user_id}, {$this->draft}, {$this->time_posted});";
+		$result = $database->query($sql);
+		if($database->affected_rows() == 1) {
+			$this->id = $database->insert_id();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 }
 

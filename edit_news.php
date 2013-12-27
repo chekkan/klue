@@ -69,7 +69,7 @@ if(isset($_GET['id'])) {
 			}?>
 			<div class="form-group">
 				<label for="title" class="col-sm-2 control-label">Title</label>
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-10">
 					<input type="text" name="title" id="title" class="form-control"
 						<?php if(isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; }
 						else { echo "value=\"{$news->title}\""; }?>
@@ -79,9 +79,9 @@ if(isset($_GET['id'])) {
 					}?>
 				</div>
 			</div>
-			<div class="form-control">
+			<div class="form-group">
 				<label for="message" class="col-sm-2 control-label">Message</label>
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-10">
 					<textarea name="message" id="message" class="form-control"><?php 
 						if(isset($_POST['message'])) { echo $_POST['message']; }
 						else { echo $news->message; }
@@ -89,12 +89,13 @@ if(isset($_GET['id'])) {
 					<?php if (isset($error_messages['message'])) {
 						echo "<p class=\"text-danger\">{$error_messages['message']}</p>";
 					}?>
+				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-2">
+				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="draft" value="true" 
+							<input type="checkbox" name="draft" value="true"
 								<?php if(isset($_POST['draft'])) { echo "checked=true"; } 
 								else if($news->draft) { echo "checked=true"; }?>
 							/> Draft

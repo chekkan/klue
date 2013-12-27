@@ -67,7 +67,7 @@ if(isset($_GET['id'])) {
 	echo "<section>
 			<h2>Comments</h2>";
 	
-	$form = (isset($error_messages['message'])) ? new FormHelper($error_messages) : new FormHelper();
+	$form = (isset($error_messages)) ? new FormHelper($error_messages) : new FormHelper();
 	echo $form->start($_SERVER['PHP_SELF']."?id={$event->id}");
 	echo $form->textarea(array("label" => "Comment", "name" => "message", "id" => "message"));
 	echo $form->end("Comment");
