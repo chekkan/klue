@@ -10,7 +10,7 @@ if(!isset($_SESSION['logged_in'])) {
 
 $page = new Page();
 $page->title = "New &lt; Messages &lt; Craften";
-echo $page->header();
+echo $page->header("Messages");
 echo $page->breadcrumb(array("Home"=>"index.php", "Messages"=>"messages.php"));
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -24,7 +24,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Messages"=>"messages.php"));
 		<textarea name="message" id="message"></textarea>
 	</div>
 	<div class="input">
-		<input type="submit" name="send" value="Send" />
+		<input type="submit" name="send" value="Send" class="btn btn-default" />
 	</div>
 </form>
 <?php

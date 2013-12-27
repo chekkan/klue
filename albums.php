@@ -19,15 +19,15 @@ if(isset($_GET['id'])) {
 		$page = new Page();
 		$page->title = $album->title." &lt; Gallery";
 		$page->add_css("styles/albums.css");
-		echo $page->header();
+		echo $page->header("Gallery");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 		echo "<h2>{$album->title}</h2>";
 		// check if the user is logged in
 		if(isset($_SESSION['logged_in'])) {
 			echo "<p>
-				<a href=\"add_pictures.php?id={$album->id}\" class=\"button\">Upload Pictures</a>
-				<a href=\"edit_album.php?id={$album->id}\" class=\"button\">Edit Album</a>
-				<a href=\"delete_album.php?id={$album->id}\" class=\"button\">Delete Album</a>
+				<a href=\"add_pictures.php?id={$album->id}\" class=\"btn btn-primary\">Upload Pictures</a>
+				<a href=\"edit_album.php?id={$album->id}\" class=\"btn btn-warning\">Edit Album</a>
+				<a href=\"delete_album.php?id={$album->id}\" class=\"btn btn-danger\">Delete Album</a>
 			</p>";
 		}
 		
@@ -49,14 +49,14 @@ else {
 
 	$page = new Page();
 	$page->title = "Gallery";
-	echo $page->header();
+	echo $page->header("Gallery");
 	echo $page->breadcrumb(array("Home"=>"index.php"));
 
 	echo "<h2>Gallery</h2>";
 
 	// if the user is logged in
 	if(isset($_SESSION['logged_in'])) {
-		echo "<p><a href=\"create_album.php\" class=\"button\">New Album</a></p>";
+		echo "<p><a href=\"create_album.php\" class=\"btn btn-default\">New Album</a></p>";
 	}
 
 	// get all the albums

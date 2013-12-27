@@ -49,7 +49,7 @@ if(isset($_POST['login'])) {
 $page = new Page();
 $page->title = "Login";
 $page->add_css("styles/login.css");
-echo $page->header();
+echo $page->header("Login");
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -74,7 +74,7 @@ echo $page->header();
 		<input type="password" name="password" id="password" />
 	</div>
 	<div class="input">
-		<input type="submit" name="login" value="Login" />
+		<input type="submit" name="login" value="Login" class="btn btn-default" />
 		<span>or <a href="register.php" title="Register">Register</a></span>
 	</div>
 </form>

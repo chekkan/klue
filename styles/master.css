@@ -68,37 +68,6 @@ footer {
 	padding: 0.4em 0;
 }
 
-nav {
-	background-color: #edefef;
-	padding: 1em 0;
-	font-size: 0.8em;
-}
-nav li {
-	padding: 1em;
-	display: inline;
-}
-nav li:hover {
-	background-color: #dee0e0;
-	text-shadow: #4a4b4b 0.5px 0.5px 1px;
-}
-nav li a {
-	padding: 1em;
-	text-decoration: none;
-	color: #5a5a5a;
-}
-div#breadcrumb {
-	padding: 0.5em 1em;
-	margin: 1em 0;
-	font-size: 0.7em;
-	border: 1px dashed #909090;
-}
-div#breadcrumb a {
-	color: #4d7291;
-	text-decoration: none;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-}
-
 a.button {
 	padding: 0.5em;
 	background-color: #574239;

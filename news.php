@@ -44,14 +44,14 @@ if(isset($_GET['id'])) {
 		$page = new Page();
 		$page->title = $news->title . "&lt; News";
 		$page->heading = "Craften";
-		echo $page->header();
+		echo $page->header("News");
 		echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php"));
 
 		// if the user is logged in
 		if(isset($_SESSION['logged_in'])) {
 			echo "<p>
-					<a href=\"edit_news.php?id={$news->id}\" class=\"button\">Edit</a>
-					<a href=\"delete_news.php?id={$news->id}\" class=\"button\">Delete</a>
+					<a href=\"edit_news.php?id={$news->id}\" class=\"btn btn-default\">Edit</a>
+					<a href=\"delete_news.php?id={$news->id}\" class=\"btn btn-default\">Delete</a>
 				</p>";
 		}
 		echo "<h2>{$news->title}</h2>";
@@ -102,14 +102,14 @@ else {
 	$page = new Page();
 	$page->title = "News";
 	$page->heading = "Craften";
-	echo $page->header();
+	echo $page->header("News");
 	echo $page->breadcrumb(array("Home"=>"index.php"));
 
 	echo "<h2>News</h2>";
 
 	// if the user is logged in
 	if(isset($_SESSION['logged_in'])) {
-		echo "<p><a class=\"button\" href=\"create_news.php\">Create News</a></p>";
+		echo "<p><a class=\"btn btn-default\" href=\"create_news.php\">Create News</a></p>";
 	}
 
 	$newses = News::find_all();

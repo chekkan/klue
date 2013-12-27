@@ -45,7 +45,7 @@ if(isset($_POST['create'])) {
 
 $page = new Page();
 $page->title = "Create &lt; Albums &lt; Craften";
-echo $page->header();
+echo $page->header("Gallery");
 echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -81,7 +81,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 		/>
 	</div>
 	<div class="input">
-		<input type="submit" name="create" value="Create" />
+		<input type="submit" name="create" value="Create" class="btn btn-primary" />
 	</div>
 </form>
 <?php

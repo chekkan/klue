@@ -47,12 +47,12 @@ if(isset($_GET['id'])) {
 	$page = new Page();
 	$page->title = $event->title . " &lt; Events";
 	$page->heading = "Craften";
-	echo $page->header();
+	echo $page->header("Events");
 	echo $page->breadcrumb(array("Home"=>"index.php", "Events"=>"events.php"));
 	// if the user is logged in, show link to edit the event
 	if(isset($_SESSION['logged_in'])) {
-		echo "<p><a href=\"edit_event.php?id={$event->id}\" class=\"button\">Edit</a>
-		<a href=\"delete_event.php?id={$event->id}\" class=\"button\">Delete</a>
+		echo "<p><a href=\"edit_event.php?id={$event->id}\" class=\"btn btn-default\">Edit</a>
+		<a href=\"delete_event.php?id={$event->id}\" class=\"btn btn-default\">Delete</a>
 		</p>";
 	}
 	echo "<h2>{$event->title}</h2>";
@@ -92,7 +92,7 @@ if(isset($_GET['id'])) {
 			<textarea id="message" name="message"></textarea>
 		</div>
 		<div class="input">
-			<input type="submit" name="comment" value="Comment" />
+			<input type="submit" name="comment" value="Comment" class="btn btn-default" />
 		</div>
 	</form>
 	<?php
@@ -104,13 +104,13 @@ else {
 	$page->title = "Events";
 	$page->heading = "Craften";
 	$page->add_css("styles/events.css");
-	echo $page->header();
+	echo $page->header("Events");
 	echo $page->breadcrumb(array("Home"=>"index.php"));
 	echo "<h2>Events</h2>";
 	
 	// if the user is logged in
 	if(isset($_SESSION['logged_in'])) {
-		echo "<p><a class=\"button\" href=\"create_event.php\">Create Event</a></p>";
+		echo "<p><a class=\"btn btn-default\" href=\"create_event.php\">Create Event</a></p>";
 	}
 	$events = Event::findAll();
 	if(!$events) {

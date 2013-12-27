@@ -72,7 +72,7 @@ if(isset($_POST['register'])) {
 $page = new Page();
 $page->title = "Register";
 $page->add_css("styles/register.css");
-echo $page->header();
+echo $page->header("Register");
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

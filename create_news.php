@@ -46,39 +46,41 @@ if(isset($_POST['post'])) {
 $page = new Page();
 $page->title = "Create &lt; News &lt; Craften";
 $page->heading = "Craften";
-echo $page->header();
+echo $page->header("News");
 echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php"));
 ?>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" role="form">
 	<h2>Create News</h2>
 	<?php if (isset($error_messages['main'])) {
 		echo "<p class=\"error\">{$error_messages['main']}</p>";
 	}?>
-	<div class="input">
+	<div class="form-group">
 		<?php if (isset($error_messages['title'])) {
 			echo "<p class=\"error\">{$error_messages['title']}</p>";
 		}?>
 		<label for="title">Title</label>
-		<input type="text" name="title" id="title"
+		<input type="text" name="title" id="title" class="form-control"
 			<?php if(isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; } ?>
 		/>
 	</div>
-	<div class="input">
+	<div class="form-group">
 		<?php if (isset($error_messages['message'])) {
 			echo "<p class=\"error\">{$error_messages['message']}</p>";
 		}?>
 		<label for="message">Message</label>
-		<textarea name="message" id="message"><?php 
+		<textarea name="message" id="message" class="form-control"><?php 
 			if(isset($_POST['message'])) { echo $_POST['message']; } 
 		?></textarea>
 	</div>
-	<div class="input">
-		<input type="checkbox" name="draft" value="true" 
-			<?php if(isset($_POST['draft'])) { echo "checked=true"; } ?>
-		/> Draft
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="draft" value="true" 
+				<?php if(isset($_POST['draft'])) { echo "checked=true"; } ?>
+			/> Draft
+		</label>
 	</div>
 	<div class="input">
-		<input type="submit" name="post" value="Post" />
+		<input type="submit" name="post" value="Post" class="btn btn-default" />
 	</div>
 </form>
 <?php

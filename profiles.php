@@ -15,11 +15,11 @@ if(isset($_GET['id'])) {
 	
 	$page = new Page();
 	$page->title = $user->full_name() ." &lt; Profiles";
-	echo $page->header();
+	echo $page->header("Profiles");
 	echo $page->breadcrumb(array("Home"=>"index.php", "Profiles"=>"profiles.php"));
 	// check if the user profile belongs to the logged in user
 	if(isset($_SESSION['logged_in']) && ($_SESSION['user_id'] == $_GET['id'])) {
-		echo "<p><a href=\"edit_profile.php\" class=\"button\">Edit Profile</a></p>";
+		echo "<p><a href=\"edit_profile.php\" class=\"btn btn-default\">Edit Profile</a></p>";
 	}
 	echo "<h2>{$user->full_name()}</h2>";
 	echo "<p>{$level->title}</p>";
@@ -33,7 +33,7 @@ else {
 
 	$page = new Page();
 	$page->title = "Profiles";
-	echo $page->header();
+	echo $page->header("Profiles");
 	echo $page->breadcrumb(array("Home"=>"index.php"));
 	// get all the users
 	$users = User::find_all();

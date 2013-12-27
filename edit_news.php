@@ -58,7 +58,7 @@ if(isset($_GET['id'])) {
 		$page = new Page();
 		$page->title = "Edit &lt; News &lt; Craften";
 		$page->heading = "Craften";
-		echo $page->header();
+		echo $page->header("News");
 		echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php",
 		 						$news->title=>"news.php?id={$news->id}"));
 		// form to edit news

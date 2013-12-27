@@ -49,7 +49,7 @@ $user = User::find_by_id($_SESSION['user_id']);
 
 $page = new Page();
 $page->title = "Edit &lt; Profile &lt; Craften";
-echo $page->header();
+echo $page->header("Profile");
 echo $page->breadcrumb(array("Home"=>"index.php", "Profiles"=>"profiles.php", $user->full_name()=>"profiles.php?id={$user->id}"));
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -98,7 +98,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Profiles"=>"profiles.php", $u
 		/>
 	</div>
 	<div class="input">
-		<input type="submit" name="save" value="Save" />
+		<input type="submit" name="save" value="Save" class="btn btn-default" />
 	</div>
 </form>
 <?php
