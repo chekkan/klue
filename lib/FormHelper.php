@@ -26,7 +26,6 @@ class FormHelper {
 			else {
 				$action = $params;
 			}
-			$method = "post";
 		}
 		if(!isset($method)) {
 			$method = "post";
@@ -35,10 +34,10 @@ class FormHelper {
 			$action = $_SERVER['PHP_SELF'];
 		}
 		$return =<<<EOD
-		<form action="{$action}" method="{$method}">
+		<form action="{$action}" method="{$method}" role="form">
 EOD;
 		if(isset($this->error_messages['main'])) {
-			$return .= "<p class=\"error\">{$this->error_messages['main']}</p>";
+			$return .= "<p class=\"text-danger\">{$this->error_messages['main']}</p>";
 		}
 		return $return;
 	}
@@ -58,13 +57,13 @@ EOD;
 				$value = "Submit";
 			}
 			else {
-				$name = $params;
+				$name = lcfirst(strtolower($params));
 				$value = $params;
 			}
 		}
 		$return =<<<EOD
-			<div class="submit">
-				<input type="submit" name="{$name}" value="{$value}" />
+			<div class="form-group">
+				<input type="submit" name="{$name}" value="{$value}" class="btn btn-default" />
 			</div>
 		</form>
 EOD;
@@ -157,6 +156,47 @@ EOD;
 		}
 		$return .=<<<EOD
 			<input type="text" name="{$name}" id="{$id}" value="{$value}" />
+		</div>
+EOD;
+		return $return;
+	}
+	
+	public function textarea($params="") {
+		if (is_array($params)) {
+			if (isset($params['id'])) {
+				$id = $params['id'];
+			}
+			if (isset($params['label'])) {
+				$label = $params['label'];
+			}
+			if (isset($params['name'])) {
+				$name = $params['name'];
+			}
+		}
+		
+		//TODO: what if name is not given, but only id or name is given through using param array
+				
+		if (!isset($name)) {
+			$name = (!empty($params)) ? strtolower($params) : "default";
+		}
+		if (!isset($id)) {
+			$id = ucfirst($name);
+		}
+		if (!isset($label)) {
+			$label = $id;
+		}
+		
+		$return =<<<EOD
+		<div class="form-group">
+			<label for="{$id}" class="control-label">{$label}</label>
+			<div>
+				<textarea name="{$name}" id="{$id}" class="form-control"></textarea>
+EOD;
+		if (isset($this->error_messages[$name])) { 
+			$return .= "<p class=\"text-danger\">{$error_messages['{$name}']}</p>";
+		}
+		$return .=<<<EOD
+			</div>
 		</div>
 EOD;
 		return $return;
