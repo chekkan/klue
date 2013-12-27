@@ -80,18 +80,18 @@ if(isset($_GET['id'])) {
 		echo "</ul>";
 	}
 	?>
-	<form action="<?php echo $_SERVER['PHP_SELF']."?id={$event->id}"; ?>" method="post">
+	<form action="<?php echo $_SERVER['PHP_SELF']."?id={$event->id}"; ?>" method="post" role="form">
 		<?php if (isset($error_messages['main'])) { 
-			echo "<p class=\"error_message\">{$error_messages['main']}</p>"; } 
+			echo "<p class=\"text-danger\">{$error_messages['main']}</p>"; } 
 		?>
-		<div class="input">
+		<div class="form-group">
 			<?php if (isset($error_messages['message'])) { 
-				echo "<p class=\"error_message\">{$error_messages['message']}</p>"; } 
+				echo "<p class=\"text-danger\">{$error_messages['message']}</p>"; } 
 			?>
-			<label for="message">Comment</label>
-			<textarea id="message" name="message"></textarea>
+			<label for="message" class="control-label">Comment</label>
+			<textarea id="message" name="message" class="form-control"></textarea>
 		</div>
-		<div class="input">
+		<div class="form-group">
 			<input type="submit" name="comment" value="Comment" class="btn btn-default" />
 		</div>
 	</form>
