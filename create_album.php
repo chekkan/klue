@@ -56,7 +56,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 	<div class="form-group">
 		<label for="title" class="col-sm-2 control-label">Title</label>
 		<div class="col-sm-10">
-			<input type="text" name="title" id="title" class="form-control"
+			<input type="text" name="title" id="title" class="form-control" placeholder="Title"
 				<?php if (isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; } ?>
 			/>
 			<?php if (isset($error_messages['title'])) {
@@ -67,7 +67,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 	<div class="form-group">
 		<label for="location" class="col-sm-2 control-label">Location</label>
 		<div class="col-sm-10">
-			<input type="text" name="location" id="location" class="form-control"
+			<input type="text" name="location" id="location" class="form-control" placeholder="Location"
 				<?php if (isset($_POST['location'])) { echo "value=\"{$_POST['location']}\""; } ?>
 			/>
 			<?php if (isset($error_messages['location'])) {
@@ -78,7 +78,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 	<div class="form-group">
 		<label for="description" class="col-sm-2 control-label">Description</label>
 		<div class="col-sm-10">
-			<textarea name="description" id="description" class="form-control"><?php
+			<textarea name="description" id="description" class="form-control" placeholder="Description"><?php
 				if (isset($_POST['description'])) { echo $_POST['description']; } 
 			?></textarea>
 			<?php if (isset($error_messages['description'])) {
@@ -89,7 +89,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 	<div class="form-group">
 		<label for="date_taken" class="col-sm-2 control-label">Date</label>
 		<div class="col-sm-10">
-			<input type="date" name="date_taken" id="date_taken" class="form-control"
+			<input type="date" name="date_taken" id="date_taken" class="form-control" placeholder="YYYY-MM-DD"
 				<?php if (isset($_POST['date_taken'])) { echo "value=\"{$_POST['date_taken']}\""; } ?>
 			/>
 			<?php if (isset($error_messages['date_taken'])) {

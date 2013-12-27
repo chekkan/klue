@@ -24,7 +24,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Messages"=>"messages.php"));
 	<div class="form-group">
 		<label for="message" class="col-sm-2 control-label">Message</label>
 		<div class="col-sm-10">
-			<textarea name="message" id="message" class="form-control"></textarea>
+			<textarea name="message" id="message" class="form-control" placeholder="Message"></textarea>
 		</div>
 	</div>
 	<div class="form-group">

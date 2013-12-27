@@ -57,7 +57,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php"));
 	<div class="form-group">
 		<label for="title" class="col-sm-2 control-label">Title</label>
 		<div class="col-sm-10">
-			<input type="text" name="title" id="title" class="form-control"
+			<input type="text" name="title" id="title" class="form-control" placeholder="Title"
 				<?php if(isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; } ?>
 			/>
 			<?php if (isset($error_messages['title'])) {
@@ -68,7 +68,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php"));
 	<div class="form-group">
 		<label for="message" class="col-sm-2 control-label">Message</label>
 		<div class="col-sm-10">
-			<textarea name="message" id="message" class="form-control"><?php 
+			<textarea name="message" id="message" class="form-control" placeholder="Message"><?php 
 				if(isset($_POST['message'])) { echo $_POST['message']; } 
 			?></textarea>
 			<?php if (isset($error_messages['message'])) {

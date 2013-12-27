@@ -57,9 +57,11 @@ if(isset($_GET['id'])) {
 		</p>";
 	}
 	echo "<h2>{$event->title}</h2>";
-	echo "<p>Date: ".date('d F Y', strtotime($event->date))."</p>";
-	echo "<p>Venue: {$event->venue}</p>";
-	echo "<p>{$event->description}</p>";
+	echo "<dl>";
+	echo "<dt>Date</dt><dd>".date('d F Y', strtotime($event->date))."</dd>";
+	echo "<dt>Venue</dt><dd>{$event->venue}</dd>";
+	echo "<dt>Description</dt><dd>{$event->description}</dd>";
+	echo "</dl>";
 	// comments
 	$comments = EventComment::find_by_event($event->id);
 	echo "<h3>Comments</h3>";

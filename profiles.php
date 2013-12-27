@@ -22,8 +22,8 @@ if(isset($_GET['id'])) {
 		echo "<p><a href=\"edit_profile.php\" class=\"btn btn-default\">Edit Profile</a></p>";
 	}
 	echo "<h2>{$user->full_name()}</h2>";
-	echo "<dl class=\"dl-horizontal\">";
-	echo "<dt>Role</dt><dd>{$level->title}</dd>";
+	echo "<dl>";
+	echo "<dd class=\"label label-primary\">{$level->title}</dd>";
 	echo "<dt>Date of Birth</dt><dd>{$user->date_of_birth}</dd>";
 	echo "<dt>Email<dt><dd>{$user->email}</dd>";
 	echo "<dt>Member since</dt><dd>".date("d F Y", $user->register_date)."</dd>";
