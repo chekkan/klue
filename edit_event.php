@@ -66,61 +66,77 @@ if(isset($_GET['id'])) {
 		echo $page->header("Events");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Events"=>"events.php", $event->title=>"events.php?id={$event->id}"));
 		?>
-		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$event_id}"; ?>" method="post">
+		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$event_id}"; ?>" method="post" role="form" class="form-horizontal">
 			<h2>Edit Event</h2>
 			<?php if (isset($error_messages['main'])) {
-				echo "<p class=\"error\">{$error_messages['main']}</p>";
+				echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
 			}?>
-			<div class="input">
-				<?php if (isset($error_messages['title'])) {
-					echo "<p class=\"error\">{$error_messages['title']}</p>";
-				}?>
-				<label for="title">Title</label>
-				<input type="text" name="title" id="title" placeholder="Event title"
-					<?php
-					if (isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; }
-					else { echo "value=\"{$event->title}\""; }
-					?>
-				/>
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label">Title</label>
+				<div class="col-sm-10">
+					<input type="text" name="title" id="title" placeholder="Event title" class="form-control"
+						<?php
+						if (isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; }
+						else { echo "value=\"{$event->title}\""; }
+						?>
+					/>
+					<?php if (isset($error_messages['title'])) {
+						echo "<p class=\"text-danger\">{$error_messages['title']}</p>";
+					}?>
+				</div>
 			</div>
-			<div class="input">
-				<?php if (isset($error_messages['date'])) {
-					echo "<p class=\"error\">{$error_messages['date']}</p>";
-				}?>
-				<label for="date">Date</label>
-				<input type="date" name="date" id="date" placeholder="YYYY-MM-DD"
-					<?php if (isset($_POST['date'])) { echo "value=\"{$_POST['date']}\""; } 
-					else { echo "value=\"{$event->date}\""; } ?>
-				/>
+			<div class="form-group">
+				<label for="date" class="col-sm-2 control-label">Date</label>
+				<div class="col-sm-10">
+					<input type="date" name="date" id="date" placeholder="YYYY-MM-DD" class="form-control"
+						<?php if (isset($_POST['date'])) { echo "value=\"{$_POST['date']}\""; } 
+						else { echo "value=\"{$event->date}\""; } ?>
+					/>
+					<?php if (isset($error_messages['date'])) {
+						echo "<p class=\"text-danger\">{$error_messages['date']}</p>";
+					}?>
+				</div>
 			</div>
-			<div class="input">
-				<?php if (isset($error_messages['venue'])) {
-					echo "<p class=\"error\">{$error_messages['venue']}</p>";
-				}?>
-				<label for="venue">Venue</label>
-				<input type="text" name="venue" id="venue" placeholder="Venue"
-					<?php if (isset($_POST['venue'])) { echo "value=\"{$_POST['venue']}\""; } 
-					else { echo "value=\"{$event->venue}\""; }?>
-				/>
+			<div class="form-group">
+				<label for="venue" class="col-sm-2 control-label">Venue</label>
+				<div class="col-sm-10">
+					<input type="text" name="venue" id="venue" placeholder="Venue" class="form-control"
+						<?php if (isset($_POST['venue'])) { echo "value=\"{$_POST['venue']}\""; } 
+						else { echo "value=\"{$event->venue}\""; }?>
+					/>
+					<?php if (isset($error_messages['venue'])) {
+						echo "<p class=\"text-danger\">{$error_messages['venue']}</p>";
+					}?>
+				</div>
 			</div>
-			<div class="input">
-				<?php if (isset($error_messages['description'])) {
-					echo "<p class=\"error\">{$error_messages['description']}</p>";
-				}?>
-				<label for="description">Description</label>
-				<textarea name="description" id="description" placeholder="Description"><?php 
+			<div class="form-group">
+				<label for="description" class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-10">
+					<textarea name="description" id="description" placeholder="Description" class="form-control"><?php 
 					if (isset($_POST['description'])) { echo $_POST['description']; } 
 					else { echo $event->description; }
 					?></textarea>
+					<?php if (isset($error_messages['description'])) {
+						echo "<p class=\"text-danger\">{$error_messages['description']}</p>";
+					}?>
+				</div>
 			</div>
-			<div class="input">
-				<input type="checkbox" name="draft" value="true" 
-					<?php if(isset($_POST['draft'])) { echo "checked=true"; } 
-					else if($event->draft) { echo "checked=true"; }?>
-				/> Draft
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="draft" value="true" 
+								<?php if(isset($_POST['draft'])) { echo "checked=true"; } 
+								else if($event->draft) { echo "checked=true"; }?>
+							/> Draft
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="input">
-				<input type="submit" name="save" value="Save" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" name="save" value="Save" class="btn btn-default" />
+				</div>
 			</div>
 		</form>
 		<?php

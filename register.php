@@ -75,60 +75,60 @@ $page->add_css("styles/register.css");
 echo $page->header("Register");
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" role="form">
 	<h2>Register</h2>
 	<?php if (isset($error_messages['main'])) {
-		echo "<p class=\"error\">{$error_messages['main']}</p>";
+		echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
 	}?>
-	<div class="input">
-		<?php if (isset($error_messages['first_name'])) {
-			echo "<p class=\"error\">{$error_messages['first_name']}</p>";
-		}?>
+	<div class="form-group">
 		<label for="first_name">First Name</label>
-		<input type="text" name="first_name" id="first_name"
+		<input type="text" name="first_name" id="first_name" class="form-control"
 			<?php if(isset($_POST['first_name'])) { echo "value=\"{$_POST['first_name']}\""; } ?>
 		/>
-	</div>
-	<div class="input">
-		<?php if (isset($error_messages['last_name'])) {
-			echo "<p class=\"error\">{$error_messages['last_name']}</p>";
+		<?php if (isset($error_messages['first_name'])) {
+			echo "<p class=\"text-danger\">{$error_messages['first_name']}</p>";
 		}?>
+	</div>
+	<div class="form-group">
 		<label for="last_name">Last Name</label>
-		<input type="text" name="last_name" id="last_name"
+		<input type="text" name="last_name" id="last_name"class="form-control"
 			<?php if(isset($_POST['last_name'])) { echo "value=\"{$_POST['last_name']}\""; } ?>
 		/>
-	</div>
-	<div class="input">
-		<?php if (isset($error_messages['email'])) {
-			echo "<p class=\"error\">{$error_messages['email']}</p>";
+		<?php if (isset($error_messages['last_name'])) {
+			echo "<p class=\"text-danger\">{$error_messages['last_name']}</p>";
 		}?>
+	</div>
+	<div class="form-group">
 		<label for="email">Email</label>
-		<input type="email" name="email" id="email"
+		<input type="email" name="email" id="email" class="form-control"
 			<?php if(isset($_POST['email'])) { echo "value=\"{$_POST['email']}\""; } ?>
 		/>
-	</div>
-	<div class="input">
-		<?php if (isset($error_messages['password'])) {
-			echo "<p class=\"error\">{$error_messages['password']}</p>";
+		<?php if (isset($error_messages['email'])) {
+			echo "<p class=\"text-danger\">{$error_messages['email']}</p>";
 		}?>
+	</div>
+	<div class="form-group">
 		<label for="password">Password</label>
-		<input type="password" name="password" id="password" />
-	</div>
-	<div class="input">
-		<label for="confirm_password">Confirm Password</label>
-		<input type="password" name="confirm_password" id="confirm_password" />
-	</div>
-	<div class="input">
-		<?php if (isset($error_messages['date_of_birth'])) {
-			echo "<p class=\"error\">{$error_messages['date_of_birth']}</p>";
+		<input type="password" name="password" id="password" class="form-control" />
+		<?php if (isset($error_messages['password'])) {
+			echo "<p class=\"text-danger\">{$error_messages['password']}</p>";
 		}?>
+	</div>
+	<div class="form-group">
+		<label for="confirm_password">Confirm Password</label>
+		<input type="password" name="confirm_password" id="confirm_password" class="form-control" />
+	</div>
+	<div class="form-group">
 		<label for="date_of_birth">Date of Birth</label>
-		<input type="date" name="date_of_birth" id="date_of_birth"
+		<input type="date" name="date_of_birth" id="date_of_birth" class="form-control"
 			<?php if(isset($_POST['date_of_birth'])) { echo "value=\"{$_POST['date_of_birth']}\""; } ?>
 		/>
+		<?php if (isset($error_messages['date_of_birth'])) {
+			echo "<p class=\"text-danger\">{$error_messages['date_of_birth']}</p>";
+		}?>
 	</div>
-	<div class="input">
-		<input type="submit" name="register" value="Register" />
+	<div class="form-group">
+		<input type="submit" name="register" value="Register" class="btn btn-primary" />
 		<span>or <a href="login.php">Login</a></span>
 	</div>
 </form>

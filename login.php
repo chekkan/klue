@@ -52,28 +52,28 @@ $page->add_css("styles/login.css");
 echo $page->header("Login");
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" role="form">
 	<h2>Login</h2>
 	<?php if (isset($error_messages['main'])) {
-		echo "<p class=\"error\">{$error_messages['main']}</p>";
+		echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
 	}?>
-	<div class="input">
-		<?php if (isset($error_messages['email'])) {
-			echo "<p class=\"error\">{$error_messages['email']}</p>";
-		}?>
+	<div class="form-group">
 		<label for="email">Email</label>
-		<input type="email" name="email" id="email"
+		<input type="email" name="email" id="email" class="form-control"
 			<?php if(isset($_POST['email'])) { echo "value=\"{$_POST['email']}\""; } ?>
 		/>
-	</div>
-	<div class="password">
-		<?php if (isset($error_messages['password'])) {
-			echo "<p class=\"error\">{$error_messages['password']}</p>";
+		<?php if (isset($error_messages['email'])) {
+			echo "<p class=\"text-danger\">{$error_messages['email']}</p>";
 		}?>
-		<label for="password">Password</label>
-		<input type="password" name="password" id="password" />
 	</div>
-	<div class="input">
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" class="form-control" />
+		<?php if (isset($error_messages['password'])) {
+			echo "<p class=\"text-danger\">{$error_messages['password']}</p>";
+		}?>
+	</div>
+	<div class="form-group">
 		<input type="submit" name="login" value="Login" class="btn btn-default" />
 		<span>or <a href="register.php" title="Register">Register</a></span>
 	</div>

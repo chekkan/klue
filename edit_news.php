@@ -63,38 +63,49 @@ if(isset($_GET['id'])) {
 		 						$news->title=>"news.php?id={$news->id}"));
 		// form to edit news
 		?>
-		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$news->id}"; ?>" method="post">
+		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$news->id}"; ?>" method="post" class="form-horizontal" role="form">
 			<?php if (isset($error_messages['main'])) {
-				echo "<p class=\"error\">{$error_messages['main']}</p>";
+				echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
 			}?>
-			<div class="input">
-				<?php if (isset($error_messages['title'])) {
-					echo "<p class=\"error\">{$error_messages['title']}</p>";
-				}?>
-				<label for="title">Title</label>
-				<input type="text" name="title" id="title"
-					<?php if(isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; }
-					else { echo "value=\"{$news->title}\""; }?>
-				/>
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label">Title</label>
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="text" name="title" id="title" class="form-control"
+						<?php if(isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; }
+						else { echo "value=\"{$news->title}\""; }?>
+					/>
+					<?php if (isset($error_messages['title'])) {
+						echo "<p class=\"text-danger\">{$error_messages['title']}</p>";
+					}?>
+				</div>
 			</div>
-			<div class="input">
-				<?php if (isset($error_messages['message'])) {
-					echo "<p class=\"error\">{$error_messages['message']}</p>";
-				}?>
-				<label for="message">Message</label>
-				<textarea name="message" id="message"><?php 
-					if(isset($_POST['message'])) { echo $_POST['message']; }
-					else { echo $news->message; }
-				?></textarea>
+			<div class="form-control">
+				<label for="message" class="col-sm-2 control-label">Message</label>
+				<div class="col-sm-offset-2 col-sm-10">
+					<textarea name="message" id="message" class="form-control"><?php 
+						if(isset($_POST['message'])) { echo $_POST['message']; }
+						else { echo $news->message; }
+					?></textarea>
+					<?php if (isset($error_messages['message'])) {
+						echo "<p class=\"text-danger\">{$error_messages['message']}</p>";
+					}?>
 			</div>
-			<div class="input">
-				<input type="checkbox" name="draft" value="true" 
-					<?php if(isset($_POST['draft'])) { echo "checked=true"; } 
-					else if($news->draft) { echo "checked=true"; }?>
-				/> Draft
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-2">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="draft" value="true" 
+								<?php if(isset($_POST['draft'])) { echo "checked=true"; } 
+								else if($news->draft) { echo "checked=true"; }?>
+							/> Draft
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="input">
-				<input type="submit" name="save" value="Save" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" name="save" value="Save" class="btn btn-default" />
+				</div>
 			</div>
 		</form>
 		<?php

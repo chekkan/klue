@@ -52,53 +52,63 @@ $page->title = "Edit &lt; Profile &lt; Craften";
 echo $page->header("Profile");
 echo $page->breadcrumb(array("Home"=>"index.php", "Profiles"=>"profiles.php", $user->full_name()=>"profiles.php?id={$user->id}"));
 ?>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal" role="form">
 	<h2>Edit Profile</h2>
 	<?php if(isset($error_messages['main']))
-		echo "<p class=\"error\">{$error_messages['main']}</p>"; 
+		echo "<p class=\"text-danger\">{$error_messages['main']}</p>"; 
 	?>
-	<div class="input">
-		<?php if(isset($error_messages['first_name']))
-			echo "<p class=\"error\">{$error_messages['first_name']}</p>"; 
-		?>
-		<label for="first_name">First Name</label>
-		<input type="text" name="first_name" id="first_name"
-			<?php if(isset($_POST['first_name'])) { echo "value=\"{$_POST['first_name']}\""; }
-			else { echo "value=\"{$user->first_name}\""; } ?>
-		/>
+	<div class="form-group">
+		<label for="first_name" class="col-sm-2 control-label">First Name</label>
+		<div class="col-sm-10">
+			<input type="text" name="first_name" id="first_name" class="form-control"
+				<?php if(isset($_POST['first_name'])) { echo "value=\"{$_POST['first_name']}\""; }
+				else { echo "value=\"{$user->first_name}\""; } ?>
+			/>
+			<?php if(isset($error_messages['first_name']))
+				echo "<p class=\"text-danger\">{$error_messages['first_name']}</p>"; 
+			?>
+		</div>
 	</div>
-	<div class="input">
-		<?php if(isset($error_messages['last_name']))
-			echo "<p class=\"error\">{$error_messages['last_name']}</p>"; 
-		?>
-		<label for="last_name">Last Name</label>
-		<input type="text" name="last_name" id="last_name"
-			<?php if(isset($_POST['last_name'])) { echo "value=\"{$_POST['last_name']}\""; }
-			else { echo "value=\"{$user->last_name}\""; } ?>
-		/>
+	<div class="form-group">
+		<label for="last_name" class="col-sm-2 control-label">Last Name</label>
+		<div class="col-sm-10">
+			<input type="text" name="last_name" id="last_name" class="form-control"
+				<?php if(isset($_POST['last_name'])) { echo "value=\"{$_POST['last_name']}\""; }
+				else { echo "value=\"{$user->last_name}\""; } ?>
+			/>
+			<?php if(isset($error_messages['last_name']))
+				echo "<p class=\"text-danger\">{$error_messages['last_name']}</p>"; 
+			?>
+		</div>
 	</div>
-	<div class="input">
-		<?php if(isset($error_messages['email']))
-			echo "<p class=\"error\">{$error_messages['email']}</p>"; 
-		?>
-		<label for="email">Email</label>
-		<input type="email" name="email" id="email"
-			<?php if(isset($_POST['email'])) { echo "value=\"{$_POST['email']}\""; }
-			else { echo "value=\"{$user->email}\""; } ?>
-		/>
+	<div class="form-group">
+		<label for="email" class="col-sm-2 control-label">Email</label>
+		<div class="col-sm-10">
+			<input type="email" name="email" id="email" class="form-control"
+				<?php if(isset($_POST['email'])) { echo "value=\"{$_POST['email']}\""; }
+				else { echo "value=\"{$user->email}\""; } ?>
+			/>
+			<?php if(isset($error_messages['email']))
+				echo "<p class=\"text-danger\">{$error_messages['email']}</p>"; 
+			?>
+		</div>
 	</div>
-	<div class="input">
-		<?php if(isset($error_messages['date_of_birth']))
-			echo "<p class=\"error\">{$error_messages['date_of_birth']}</p>"; 
-		?>
-		<label for="date_of_birth">Date of Birth</label>
-		<input type="date" name="date_of_birth" id="date_of_birth"
-			<?php if(isset($_POST['date_of_birth'])) { echo "value=\"{$_POST['date_of_birth']}\""; }
-			else { echo "value=\"{$user->date_of_birth}\""; } ?>
-		/>
+	<div class="form-group">
+		<label for="date_of_birth" class="col-sm-2 control-label">Date of Birth</label>
+		<div class="col-sm-10">
+			<input type="date" name="date_of_birth" id="date_of_birth" class="form-control"
+				<?php if(isset($_POST['date_of_birth'])) { echo "value=\"{$_POST['date_of_birth']}\""; }
+				else { echo "value=\"{$user->date_of_birth}\""; } ?>
+			/>
+			<?php if(isset($error_messages['date_of_birth']))
+				echo "<p class=\"text-danger\">{$error_messages['date_of_birth']}</p>"; 
+			?>
+		</div>
 	</div>
-	<div class="input">
-		<input type="submit" name="save" value="Save" class="btn btn-default" />
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" name="save" value="Save" class="btn btn-default" />
+		</div>
 	</div>
 </form>
 <?php

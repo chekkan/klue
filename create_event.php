@@ -58,48 +58,48 @@ echo $page->breadcrumb(array("Home"=>"index.php", "Events"=>"events.php"));
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" role="form" class="form-horizontal">
 	<h2>Create Event</h2>
 	<?php if (isset($error_messages['main'])) {
-		echo "<p class=\"error\">{$error_messages['main']}</p>";
+		echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
 	}?>
 	<div class="form-group">
-		<?php if (isset($error_messages['title'])) {
-			echo "<p class=\"error\">{$error_messages['title']}</p>";
-		}?>
 		<label for="title" class="col-sm-2 control-label">Title</label>
 		<div class="col-sm-10">
 			<input type="text" name="title" id="title" class="form-control" placeholder="Event title"
 				<?php if (isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; } ?>
 			/>
+			<?php if (isset($error_messages['title'])) {
+				echo "<p class=\"text-danger\">{$error_messages['title']}</p>";
+			}?>
 		</div>
 	</div>
 	<div class="form-group">
-		<?php if (isset($error_messages['date'])) {
-			echo "<p class=\"error\">{$error_messages['date']}</p>";
-		}?>
 		<label for="date" class="col-sm-2 control-label">Date</label>
 		<div class="col-sm-10">
 			<input type="date" name="date" id="date" class="form-control" placeholder="YYYY-MM-DD"
 				<?php if (isset($_POST['date'])) { echo "value=\"{$_POST['date']}\""; } ?>
 			/>
+			<?php if (isset($error_messages['date'])) {
+				echo "<p class=\"text-danger\">{$error_messages['date']}</p>";
+			}?>
 		</div>
 	</div>
 	<div class="form-group">
-		<?php if (isset($error_messages['venue'])) {
-			echo "<p class=\"error\">{$error_messages['venue']}</p>";
-		}?>
 		<label for="venue" class="col-sm-2 control-label">Venue</label>
 		<div class="col-sm-10">
 			<input type="text" name="venue" id="venue" class="form-control" placeholder="Venue"
 				<?php if (isset($_POST['venue'])) { echo "value=\"{$_POST['venue']}\""; } ?>
 			/>
+			<?php if (isset($error_messages['venue'])) {
+				echo "<p class=\"text-danger\">{$error_messages['venue']}</p>";
+			}?>
 		</div>
 	</div>
 	<div class="form-group">
-		<?php if (isset($error_messages['description'])) {
-			echo "<p class=\"error\">{$error_messages['description']}</p>";
-		}?>
 		<label for="description" class="col-sm-2 control-label">Description</label>
 		<div class="col-sm-10">
 			<textarea name="description" id="description" class="form-control" placeholder="Description"><?php if (isset($_POST['description'])) { echo $_POST['description']; } ?></textarea>
+			<?php if (isset($error_messages['description'])) {
+				echo "<p class=\"text-danger\">{$error_messages['description']}</p>";
+			}?>
 		</div>
 	</div>
 	<div class="form-group">
