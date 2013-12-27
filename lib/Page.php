@@ -79,7 +79,7 @@ class Page {
 			$navItems["Profile"] = "profiles.php?id={$_SESSION['user_id']}";
 			// check if the user is an admin
 			if ($_SESSION['user_level_id'] == 1) {
-				$navItems["Administrator"] = "admin/";
+				$navItems["Administration"] = "admin/";
 			}
 			$navItems["Logout"] = "logout.php";
 		} else {
