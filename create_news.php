@@ -64,7 +64,7 @@ echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php"));
 				echo "<p class=\"text-danger\">{$error_messages['title']}</p>";
 			}?>
 		</div>
-	</div>
+		</div>
 	<div class="form-group">
 		<label for="message" class="col-sm-2 control-label">Message</label>
 		<div class="col-sm-10">

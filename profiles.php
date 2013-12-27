@@ -15,17 +15,19 @@ if(isset($_GET['id'])) {
 	
 	$page = new Page();
 	$page->title = $user->full_name() ." &lt; Profiles";
-	echo $page->header("Profiles");
+	echo $page->header("Profile");
 	echo $page->breadcrumb(array("Home"=>"index.php", "Profiles"=>"profiles.php"));
 	// check if the user profile belongs to the logged in user
 	if(isset($_SESSION['logged_in']) && ($_SESSION['user_id'] == $_GET['id'])) {
 		echo "<p><a href=\"edit_profile.php\" class=\"btn btn-default\">Edit Profile</a></p>";
 	}
 	echo "<h2>{$user->full_name()}</h2>";
-	echo "<p>{$level->title}</p>";
-	echo "<p>Date of Birth: {$user->date_of_birth}</p>";
-	echo "<p>Email: {$user->email}</p>";
-	echo "<p>Member since: ".date("d F Y", $user->register_date)."</p>";
+	echo "<dl class=\"dl-horizontal\">";
+	echo "<dt>Role</dt><dd>{$level->title}</dd>";
+	echo "<dt>Date of Birth</dt><dd>{$user->date_of_birth}</dd>";
+	echo "<dt>Email<dt><dd>{$user->email}</dd>";
+	echo "<dt>Member since</dt><dd>".date("d F Y", $user->register_date)."</dd>";
+	echo "</dl>";
 	
 	echo $page->footer();
 }
@@ -33,7 +35,7 @@ else {
 
 	$page = new Page();
 	$page->title = "Profiles";
-	echo $page->header("Profiles");
+	echo $page->header("Profile");
 	echo $page->breadcrumb(array("Home"=>"index.php"));
 	// get all the users
 	$users = User::find_all();

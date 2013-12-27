@@ -56,9 +56,10 @@ class Page {
 	
 	public function footer() {
 		$return = "<footer>
-				Powered by Klue Version 0.1 &alpha; from Chekkan &copy; 2013
+				<p>Powered by Klue Version 0.1&alpha; from Chekkan &copy; 2013</p>
 			</footer>
-			</div></div>
+			</div> <!-- div.row -->
+			</div> <!-- div.container -->
 		</body>
 		</html>";
 		
