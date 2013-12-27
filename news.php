@@ -115,18 +115,18 @@ else {
 	$newses = News::find_all();
 
 	if(!$newses) {
-		die("No News to display.");
-	}
-
-	foreach ($newses as $news) {
-		// get the user details
-		$blog_user = User::find_by_id($news->user_id);
-		echo "<h2><a href=\"news.php?id={$news->id}\">{$news->title}</a></h2>";
-		echo "<span class=\"blog_details\">
-				<a href=\"profiles.php?id={$blog_user->id}\">{$blog_user->full_name()}</a> on 
-				".date("d F Y", $news->time_posted)."
-			</span>";
-		echo "<p>{$news->get_summary()}</p>";
+		echo "<p>No News to display.</p>";
+	} else {
+		foreach ($newses as $news) {
+			// get the user details
+			$blog_user = User::find_by_id($news->user_id);
+			echo "<h2><a href=\"news.php?id={$news->id}\">{$news->title}</a></h2>";
+			echo "<span class=\"blog_details\">
+					<a href=\"profiles.php?id={$blog_user->id}\">{$blog_user->full_name()}</a> on 
+					".date("d F Y", $news->time_posted)."
+				</span>";
+			echo "<p>{$news->get_summary()}</p>";
+		}
 	}
 
 	echo $page->footer();

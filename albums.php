@@ -1,4 +1,4 @@
-<?php
+	<?php
 session_start();
 
 require_once("lib/Page.php");
@@ -18,7 +18,6 @@ if(isset($_GET['id'])) {
 		$album = Album::find_by_id($album_id);
 		$page = new Page();
 		$page->title = $album->title." &lt; Gallery";
-		$page->add_css("styles/albums.css");
 		echo $page->header("Gallery");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 		echo "<h2>{$album->title}</h2>";

@@ -104,25 +104,26 @@ else {
 	}
 	$events = Event::findAll();
 	if(!$events) {
-		die("No events to be displayed.");
+		echo "<p>No events to be displayed.</p>";
+	} else {
+		echo "<ul id=\"events\">";
+		foreach ($events as $event) {
+			echo "<li>";
+			echo "<span class=\"date_container\">";
+			echo "<span class=\"date\">".date("d", strtotime($event->date))."</span> ";
+			echo "<span class=\"month\">".date("M", strtotime($event->date))."</span> ";
+			echo "<span class=\"year\">".date("Y", strtotime($event->date))."</span>";
+			echo "</span> ";
+			echo "<span class=\"event_container\">";
+			echo "<span class=\"title\">
+					<a href=\"events.php?id={$event->id}\">{$event->title}</a>
+				</span> ";
+			echo "<span class=\"venue\">{$event->venue}</span>";
+			echo "</span>";
+			echo "</li>";
+		}
+		echo "</ul>";
 	}
-	echo "<ul id=\"events\">";
-	foreach ($events as $event) {
-		echo "<li>";
-		echo "<span class=\"date_container\">";
-		echo "<span class=\"date\">".date("d", strtotime($event->date))."</span> ";
-		echo "<span class=\"month\">".date("M", strtotime($event->date))."</span> ";
-		echo "<span class=\"year\">".date("Y", strtotime($event->date))."</span>";
-		echo "</span> ";
-		echo "<span class=\"event_container\">";
-		echo "<span class=\"title\">
-				<a href=\"events.php?id={$event->id}\">{$event->title}</a>
-			</span> ";
-		echo "<span class=\"venue\">{$event->venue}</span>";
-		echo "</span>";
-		echo "</li>";
-	}
-	echo "</ul>";
 	echo $page->footer();
 }
 ?>

@@ -59,7 +59,7 @@ else {
 		$album = Album::find_by_id($album_id);
 		$page = new Page();
 		$page->title = "Edit &lt; Album &lt; Craften";
-		echo $page->header();
+		echo $page->header("Gallery");
 		?>
 		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$album_id}"; ?>" method="post" class="form-horizontal" role="form">
 			<h2>Edit Album</h2>

@@ -52,31 +52,41 @@ else {
 		$page->title = "Upload Pictures &lt; {$album->title} &lt; Craften";
 		$page->add_css("styles/add_pictures.css");
 		$page->add_script("scripts/add_pictures.js");
-		echo $page->header();
+		echo $page->header("Gallery");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php", 
 								$album->title=>"albums.php?id={$album->id}"));
 		echo "<h2>{$album->title}</h2>"; ?>
-		<form action="<?php echo $_SERVER['PHP_SELF'] . "?id={$album->id}"; ?>" method="post" enctype="multipart/form">
+		<form action="<?php echo $_SERVER['PHP_SELF'] . "?id={$album->id}"; ?>" method="post" enctype="multipart/form" class="form-horizontal" role="form">
 			<h3>Upload Pictures</h3>
 			<?php if (isset($message)) { echo "<p>{$message}</p>"; } ?>
 			<input type="hidden" name="MAX_FILE_SIZE" value="4000000" />
-			<div class="input">
-				<input type="file" name="file_upload" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="file" name="file_upload" id="FileUpload" />
+				</div>
 			</div>
-			<div class="input">
-				<label for="caption">Caption</label>
-				<input type="text" name="caption" id="caption" />
+			<div class="form-group">
+				<label for="caption" class="col-sm-2 control-label">Caption</label>
+				<div class="col-sm-10">
+					<input type="text" name="caption" id="caption" class="form-control" />
+				</div>
 			</div>
-			<div class="input">
-				<label for="location">Location</label>
-				<input type="text" name="location" id="location" />
+			<div class="form-group">
+				<label for="location" class="col-sm-2 control-label">Location</label>
+				<div class="col-sm-10">
+					<input type="text" name="location" id="location" class="form-control" />
+				</div>
 			</div>
-			<div class="input">
-				<label for="date_taken">Date</label>
-				<input type="date" name="date_taken" id="date_taken" />
+			<div class="form-group">
+				<label for="date_taken" class="col-sm-2 control-label">Date</label>
+				<div class="col-sm-10">
+					<input type="date" name="date_taken" id="date_taken" class="form-control" />
+				</div>
 			</div>
-			<div class="input">
-				<input type="submit" name="upload" value="Upload" />
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" name="upload" value="Upload" class="btn btn-default" />
+				</div>
 			</div>
 		</form>
 		<?php
