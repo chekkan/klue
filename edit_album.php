@@ -60,6 +60,7 @@ else {
 		$page = new Page();
 		$page->title = "Edit &lt; Album &lt; Craften";
 		echo $page->header("Gallery");
+		echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php", $album->title=>"albums.php?id={$album->id}"));
 		?>
 		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$album_id}"; ?>" method="post" class="form-horizontal" role="form">
 			<h2>Edit Album</h2>
