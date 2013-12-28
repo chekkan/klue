@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once("lib/User.php");
-require_once("lib/Level.php");
 require_once("lib/Page.php");
+require_once("lib/Models/User.php");
+require_once("lib/Models/Level.php");
 
 if(isset($_GET['id'])) {
 	// validate the id

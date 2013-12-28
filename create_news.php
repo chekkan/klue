@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("lib/News.php");
+require_once("lib/Models/News.php");
 require_once("lib/Page.php");
 
 // if the user is not logged in

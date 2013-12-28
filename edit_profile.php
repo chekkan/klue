@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("lib/User.php");
+require_once("lib/Models/User.php");
 require_once("lib/Page.php");
 
 // make sure the user is logged in

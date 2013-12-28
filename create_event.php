@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("lib/Event.php");
+require_once("lib/Models/Event.php");
 require_once("lib/Page.php");
 
 // make sure the user is logged in before letting them see this page

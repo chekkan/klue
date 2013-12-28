@@ -3,7 +3,7 @@ session_start();
 
 require_once("../lib/Settings.php");
 require_once("../lib/AdminPage.php");
-require_once("../lib/User.php");
+require_once("../lib/Models/User.php");
 
 // check if the user is logged in
 if(isset($_SESSION['logged_in'])) {
@@ -43,7 +43,7 @@ $settings = new Settings();
 
 $page = new AdminPage();
 $page->title = "Site Settings &lt; Administration";
-echo $page->header();
+echo $page->header("Dashboard");
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	<h2>Site Settings</h2>

@@ -1,7 +1,7 @@
 <?php
 
-require_once("Database.php");
-require_once("Table.php");
+require_once(LIB_PATH."Database.php");
+require_once(LIB_PATH."Table.php");
 
 class User extends Table{
 

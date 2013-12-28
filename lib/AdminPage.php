@@ -1,7 +1,7 @@
 <?php
 
 require_once("Page.php");
-require_once("User.php");
+require_once("Models/User.php");
 
 class AdminPage extends Page {
 	

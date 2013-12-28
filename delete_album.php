@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("lib/Album.php");
+require_once("lib/Models/Album.php");
 
 // make sure the user is logged in.
 if(!isset($_SESSION['logged_in'])) {

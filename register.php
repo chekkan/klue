@@ -3,7 +3,7 @@
 session_start();
 
 require_once("lib/Database.php");
-require_once("lib/User.php");
+require_once("lib/Models/User.php");
 require_once("lib/Page.php");
 
 if(isset($_POST['register'])) {

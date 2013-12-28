@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once("lib/Album.php");
 require_once("lib/Page.php");
+require_once("lib/Models/Album.php");
 
 //check to see if the user is logged in to see this page
 if(!isset($_SESSION['logged_in'])) {
@@ -31,6 +31,7 @@ else {
 			$location = $_POST['location'];
 			$description = $_POST['description'];
 			$date_taken = $_POST['date_taken'];
+            $time_created = $_POST['time_created'];
 			$user_id = $_SESSION['user_id'];
 			// validate the fields
 			if(empty($title)) {
@@ -46,6 +47,7 @@ else {
 				$album->description = $description;
 				$album->user_id = $user_id;
 				$album->date_taken = $date_taken;
+                $album->time_created = $time_created;
 				$updated = $album->update();
 				if($updated) {
 					header("Location: albums.php?id={$album->id}");
@@ -64,6 +66,7 @@ else {
 		?>
 		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$album_id}"; ?>" method="post" class="form-horizontal" role="form">
 			<h2>Edit Album</h2>
+            <input type="hidden" name="time_created" value="<?php echo $album->time_created; ?>" />
 			<?php if (isset($error_messages['main'])) {
 				echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
 			}?>

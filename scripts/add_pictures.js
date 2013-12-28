@@ -1,4 +1,4 @@
-var dropbox = document.getElementById("dropbox")
+var dropbox = document.getElementById("dropbox");
  
 // init event handlers
 dropbox.addEventListener("dragenter", dragEnter, false);

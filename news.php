@@ -2,9 +2,9 @@
 session_start();
 
 require_once("lib/Page.php");
-require_once("lib/News.php");
-require_once("lib/User.php");
-require_once("lib/BlogComment.php");
+require_once("lib/Models/News.php");
+require_once("lib/Models/User.php");
+require_once("lib/Models/BlogComment.php");
 require_once("lib/FormHelper.php");
 
 if(isset($_GET['id'])) {

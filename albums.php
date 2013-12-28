@@ -1,9 +1,9 @@
-	<?php
+<?php
 session_start();
 
 require_once("lib/Page.php");
-require_once("lib/Album.php");
-require_once("lib/Photograph.php");
+require_once("lib/Models/Album.php");
+require_once("lib/Models/Photograph.php");
 
 if(isset($_GET['id'])) {
 	// store the variable
@@ -64,7 +64,7 @@ else {
 	}
 
 	// get all the albums
-	$albums = Album::findAll();
+	$albums = Album::find_all();
 	if(empty($albums)) {
 		echo "<p>No albums to display.</p>";
 	}

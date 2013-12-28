@@ -1,6 +1,6 @@
 <?php
 
-require_once("Database.php");
+require_once(LIB_PATH."Database.php");
 
 class Photograph extends MySqlDatabase {
 	

@@ -2,10 +2,10 @@
 session_start();
 
 require_once("lib/Page.php");
-require_once("lib/Photograph.php");
-require_once("lib/Album.php");
-require_once("lib/Comment.php");
-require_once("lib/User.php");
+require_once("lib/Models/Photograph.php");
+require_once("lib/Models/Album.php");
+require_once("lib/Models/Comment.php");
+require_once("lib/Models/User.php");
 
 if(isset($_GET['id'])) {
 
@@ -31,7 +31,7 @@ if(isset($_GET['id'])) {
 	
 	$page = new Page();
 	$page->title = $album->title;
-	echo $page->header();
+	echo $page->header("Gallery");
 	echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php", 
 							$album->title=>"albums.php?id={$album->id}"));
 							

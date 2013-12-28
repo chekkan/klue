@@ -120,7 +120,7 @@ class Page {
 	}
 	
 	public function end($message) {
-		echo $this->header();
+		echo $this->header("");
 		echo "<p>{$message}</p>";
 		echo $this->footer();
 		die();

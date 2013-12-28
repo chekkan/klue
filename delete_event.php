@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("lib/Event.php");
+require_once("lib/Models/Event.php");
 
 // make sure the user is logged in.
 if(!isset($_SESSION['logged_in'])) {

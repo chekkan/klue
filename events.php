@@ -2,9 +2,9 @@
 session_start();
 
 require_once("lib/Page.php");
-require_once("lib/Event.php");
-require_once("lib/User.php");
-require_once("lib/EventComment.php");
+require_once("lib/Models/Event.php");
+require_once("lib/Models/User.php");
+require_once("lib/Models/EventComment.php");
 require_once("lib/FormHelper.php");
 
 $error_messages = array();
