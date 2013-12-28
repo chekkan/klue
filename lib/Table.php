@@ -101,8 +101,7 @@ class Table {
 		if($database->affected_rows() == 1)	{
 			$this->id = $database->insert_id();
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -120,7 +119,7 @@ class Table {
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;
 	}
-	
+
 	public function delete() {
 		global $database;
 		$sql = "DELETE FROM ".static::$table_name;

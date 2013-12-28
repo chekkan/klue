@@ -19,7 +19,7 @@ if(isset($_GET['id'])) {
 		die("The event you are looking for doesn't exists.");
 	}
 	else {
-		$event = Event::findById($event_id);
+		$event = Event::find_by_id($event_id);
 	}
 	// if the comment was submitted
 	if(isset($_POST['comment'])) {
@@ -108,7 +108,7 @@ else {
 	if(isset($_SESSION['logged_in'])) {
 		echo "<p><a class=\"btn btn-default\" href=\"create_event.php\">Create Event</a></p>";
 	}
-	$events = Event::findAll();
+	$events = Event::find_all();
 	if(!$events) {
 		echo "<p>No events to be displayed.</p>";
 	} else {

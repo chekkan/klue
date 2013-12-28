@@ -18,7 +18,8 @@ if(isset($_GET['id'])) {
 	}
 	else {
 		// delete the event
-		$deleted = Event::delete($event_id);
+        $event = Event::find_by_id($event_id);
+        $deleted = (!$event) ? $event->delete() : false;
 		if($deleted) {
 			header("Location: events.php");
 		}

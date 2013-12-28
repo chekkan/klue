@@ -58,7 +58,7 @@ if(isset($_GET['id'])) {
 			}
 		}
 		// get the event details
-		$event = Event::findById($event_id);
+		$event = Event::find_by_id($event_id);
 		$page = new Page();
 		$page->title = "Edit &lt; Event &lt; Craften";
 		$page->heading = "Craften";
