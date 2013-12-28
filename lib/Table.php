@@ -2,12 +2,11 @@
 
 require_once("Database.php");
 
+//TODO: Class should be name Model
 class Table {
 
 	protected static $table_name;
 	protected static $db_fields = array();
-
-    public $id;
 
 	public static function init() {
 		self::$db_fields = self::initDbFields();
@@ -28,7 +27,7 @@ class Table {
 		// get_object_vars returns an associative array with all attributes 
 		// (incl. private ones!) as the keys and their current values as the value
 		$object_vars = get_object_vars($this);
-		// We dont care about the value, we just want to know if the key exists
+		// We don't care about the value, we just want to know if the key exists
 		// Will return true or false
 		return array_key_exists($attribute, $object_vars);
 	}
@@ -56,7 +55,11 @@ class Table {
 		return $object;
 	}
 
-	public static function find_by_sql($sql="") {
+    /**
+     * @param string $sql
+     * @return array
+     */
+    public static function find_by_sql($sql="") {
 		global $database;
 		$result = $database->query($sql);
 		$object_array = array();
@@ -66,7 +69,11 @@ class Table {
 		return $object_array;
 	}
 
-	public static function find_by_id($id=0) {
+    /**
+     * @param int $id
+     * @return bool|Table
+     */
+    public static function find_by_id($id=0) {
 		global $database;
 		$sql = "SELECT * FROM ".static::$table_name;
 		$sql .= " WHERE id={$id} LIMIT 1;";

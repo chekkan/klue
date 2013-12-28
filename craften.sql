@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `site_name`, `site_description`) VALUES
-(1, 'Craften', '');
+(1, 'Klue', '');
 
 -- --------------------------------------------------------
 

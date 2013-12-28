@@ -4,10 +4,11 @@ require_once("Database.php");
 require_once("Table.php");
 
 
+//TODO: This class shouldn't extend from Table
+// exposes create method which it shouldn't
 class Settings extends Table {
 
 	protected static $table_name = "settings";
-	protected static $db_fields = array();
 
 	public $id;
 	public $site_name;
@@ -26,16 +27,6 @@ class Settings extends Table {
 	
 	public function save() {
 		return $this->update();
-	}
-	
-	public function update() {
-		global $database;
-		$sql = "UPDATE ".self::$table_name;
-		$sql .= " SET site_name = \"{$this->site_name}\", ";
-		$sql .= "site_description = \"{$this->site_description}\"";
-		$sql .= " WHERE id = {$this->id};";
-		$database->query($sql);
-		return ($database->affected_rows() == 1) ? true : false;
 	}
 
 }
