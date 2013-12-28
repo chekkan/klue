@@ -193,7 +193,7 @@ EOD;
 				<textarea name="{$name}" id="{$id}" class="form-control"></textarea>
 EOD;
 		if (isset($this->error_messages[$name])) { 
-			$return .= "<p class=\"text-danger\">{$error_messages['{$name}']}</p>";
+			$return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
 		}
 		$return .=<<<EOD
 			</div>
