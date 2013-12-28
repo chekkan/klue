@@ -16,7 +16,7 @@ else {
 
 $page = new AdminPage();
 $page->title = "Dashboard &lt; Administration";
-echo $page->header();
+echo $page->header("Dashboard");
 
 echo $page->footer();
 ?>

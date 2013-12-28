@@ -47,7 +47,7 @@ if(isset($_GET['id']) && isset($_GET['action'])) {
 
 	$page = new AdminPage();
 	$page->title = "Edit &lt; Level Settings &lt; Administration";
-	echo $page->header();
+	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	?>
 	<form action="<?php echo $_SERVER['PHP_SELF']."?id={$_GET['id']}&action=edit"; ?>" method="post">
@@ -159,7 +159,7 @@ else if(isset($_GET['id'])) {
 	$page = new AdminPage();
 	$page->title = $level->title." &lt; User Groups &lt; Administration";
 	$page->add_css("styles/levels.css");
-	echo $page->header();
+	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";
 	echo "<h2>{$level->title}</h2>";
@@ -302,7 +302,7 @@ else if (isset($_GET['action'])) {
 		}
 		$page = new AdminPage();
 		$page->title = "New &lt; User Group &lt; Administration";
-		echo $page->header();
+		echo $page->header("Users");
 		echo "<div id=\"main_content\">";
 		if(!isset($error_messages)) {
 			$error_messages = array();
@@ -325,7 +325,7 @@ else if (isset($_GET['action'])) {
 else {
 	$page = new AdminPage();
 	$page->title="Level Settings &lt; Administration";
-	echo $page->header();
+	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";
 	echo "<h2>User Groups</h2>";

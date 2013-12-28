@@ -5,7 +5,7 @@ require_once("User.php");
 
 class AdminPage extends Page {
 	
-	public function header() {
+	public function header($currentItem) {
 		global $settings;
 
 		if(empty($this->heading)) {
@@ -51,34 +51,35 @@ class AdminPage extends Page {
 		}
 		$return .= "</span>";
 		$return .= "</header>";
-		$return .= $this->nav_bar();
+		$return .= $this->nav_bar($currentItem);
 		$return .= "<div id=\"content\">";
 
 		return $return;
 	}
 	
-	public function nav_bar() {
+	public function nav_bar($currentItem) {
+		$filename = basename($_SERVER['PHP_SELF']);
 		$return = "<nav>
 				<ul>";
-		if(basename($_SERVER['PHP_SELF']) == "index.php") {
+		if($filename == "index.php") {
 			$return .= "<li><a class=\"current\" href=\"index.php\">Dashboard</a></li>";
 		}
 		else {
 			$return .= "<li><a href=\"index.php\">Dashboard</a></li>";
 		}
-		// if(basename($_SERVER['PHP_SELF']) == "site_settings.php") {
+		// if($filename == "site_settings.php") {
 		// 			$return .= "<li><a class=\"current\" href=\"site_settings.php\">Site</a></li>";
 		// 		}
 		// 		else {
 		// 			$return .= "<li><a href=\"site_settings.php\">Site</a></li>";
 		// 		}
-		if((basename($_SERVER['PHP_SELF']) == "users.php") || (basename($_SERVER['PHP_SELF']) == "levels.php")) {
+		if(($filename == "users.php") || ($filename == "levels.php")) {
 			$return .= "<li><a class=\"current\" href=\"users.php\">Users</a></li>";
 		}
 		else {
 			$return .= "<li><a href=\"users.php\">Users</a></li>";
 		}
-		if((basename($_SERVER['PHP_SELF']) == "modules.php")) {
+		if(($filename == "modules.php") || ($filename == "gallery.php")) {
 			$return .= "<li><a class=\"current\" href=\"modules.php\">Modules</a></li>";
 		}
 		else {

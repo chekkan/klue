@@ -78,7 +78,7 @@ if(isset($_GET['id']) && isset($_GET['action'])) {
 		
 		$page = new AdminPage();
 		$page->title = "Edit &lt; {$user->full_name()} &lt; User Settings";
-		echo $page->header();
+		echo $page->header("Users");
 		echo "<div id=\"main_content\">";
 		?>
 		<form action="<?php echo $_SERVER['PHP_SELF']."?id={$user->id}&action=edit"; ?>" method="post">
@@ -164,7 +164,7 @@ else if(isset($_GET['id'])) {
 	$page = new AdminPage();
 	$page->title = $user->full_name()." &lt; Users &lt; Administration";
 	$page->add_css("styles/users.css");
-	echo $page->header();
+	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";
 	echo "<h2>{$user->full_name()}</h2>";
@@ -254,7 +254,7 @@ else if(isset($_GET['action'])) {
 			}
 		}
 		$page = new AdminPage();
-		echo $page->header();
+		echo $page->header("Users");
 		echo "<div id=\"main_content\">";
 		if(!isset($error_messages)) {
 			$error_messages = array();
@@ -285,7 +285,7 @@ else {
 	$page = new AdminPage();
 	$page->title = "User Settings &lt; Administration";
 	$page->add_css("styles/users.css");
-	echo $page->header();
+	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";
 	echo "<h2>Users</h2>";
