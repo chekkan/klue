@@ -18,7 +18,6 @@ class News extends Table{
 	}
 
 	public function create() {
-		global $database;
 		$this->time_posted = time(); //TODO: change type to datetime
 		parent::create();
 	}

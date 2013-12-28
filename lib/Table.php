@@ -74,7 +74,6 @@ class Table {
      * @return bool|Table
      */
     public static function find_by_id($id=0) {
-		global $database;
 		$sql = "SELECT * FROM ".static::$table_name;
 		$sql .= " WHERE id={$id} LIMIT 1;";
 		$result_array = self::find_by_sql($sql);

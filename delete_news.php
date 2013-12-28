@@ -18,7 +18,7 @@ if(isset($_GET['id'])) {
 	}
 	else {
 		// delete the news
-		$deleted = News->delete($news_id);
+		$deleted = News::exists($news_id)? delete($news_id) : false;
 		if($deleted) {
 			header("Location: news.php");
 		}
