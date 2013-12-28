@@ -1,12 +1,10 @@
 <?php
 
-require_once(LIB_PATH."Database.php");
 require_once(LIB_PATH."Table.php");
 
 class User extends Table{
 
 	protected static $table_name = "users";
-	protected static $db_fields = array();
 	
 	public $id;
 	public $email;
@@ -37,18 +35,8 @@ class User extends Table{
 	}
 	
 	public function create() {
-		global $database;
-		$sql = "INSERT INTO users(email, password, first_name, last_name, date_of_birth, level_id, register_date)
-					VALUES(\"{$this->email}\", '".sha1($this->password)."', \"{$this->first_name}\",
-					 		\"{$this->last_name}\", \"{$this->date_of_birth}\", {$this->level_id}, ".time().");";
-		$database->query($sql);
-		if($database->affected_rows() == 1) {
-			$this->id = $database->insert_id();
-			return true;
-		}
-		else {
-			return true;
-		}
+        $this->register_date = time(); // TODO this should be of type datetime
+		parent::create();
 	}
 	
 	public function update() {		
@@ -57,7 +45,7 @@ class User extends Table{
 		$sql .= "email=\"{$this->email}\", first_name=\"{$this->first_name}\", 
 				last_name=\"{$this->last_name}\", date_of_birth=\"{$this->date_of_birth}\" ";
 		if(isset($this->level_id)) {
-			$sql .= ", level_id={$this->level_id} ";
+			$sql .= ", level_id={$this->level_id} "; // TODO: Make sure this is needed
 		}
 		$sql .= "WHERE id=".$this->id.";";
 		$database->query($sql);

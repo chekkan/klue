@@ -1,6 +1,5 @@
 <?php
 
-require_once(LIB_PATH."Database.php");
 require_once(LIB_PATH."Table.php");
 
 class News extends Table{
@@ -13,7 +12,7 @@ class News extends Table{
 	public $message;
 	public $user_id;
 	public $draft;
-	public $time_posted;
+	public $time_posted; // editing news will make this field null
 	
 	public function get_summary() {
 		return $this->message;
@@ -29,17 +28,8 @@ class News extends Table{
 
 	public function create() {
 		global $database;
-		$this->time_posted = time();
-		$sql = "INSERT INTO ".self::$table_name."(title, message, user_id, draft, time_posted)
-				VALUES(\"{$this->title}\", \"{$this->message}\", {$this->user_id}, {$this->draft}, {$this->time_posted});";
-		$result = $database->query($sql);
-		if($database->affected_rows() == 1) {
-			$this->id = $database->insert_id();
-			return true;
-		}
-		else {
-			return false;
-		}
+		$this->time_posted = time(); //TODO: change type to datetime
+		parent::create();
 	}
 	
 }

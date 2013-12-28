@@ -2,6 +2,7 @@
 
 require_once(LIB_PATH."Table.php");
 
+//TODO: This class should be called Role?
 class Level extends Table {
 
 	protected static $table_name = "levels";
@@ -29,25 +30,6 @@ class Level extends Table {
 				return false;
 			break;
 		}
-	}
-	
-	public function update() {
-		global $database;
-		$sql = "UPDATE ".self::$table_name;
-		$sql .= " SET id={$this->id}, title=\"{$this->title}\", permissions=\"{$this->permissions}\" ";
-		$sql .= "WHERE id={$this->id};";
-		//die($sql);
-		$database->query($sql);
-		return ($database->affected_rows() == 1) ? true : false;
-	}
-	
-	public function create() {
-		global $database;
-		$sql = "INSERT INTO ".self::$table_name."(title, permissions)";
-		$sql .= " VALUES (\"{$this->title}\", \"{$this->permissions}\");";
-		$database->query($sql);
-		$this->id = $database->insert_id();
-		return ($database->affected_rows() == 1) ? true : false;
 	}
 
 }

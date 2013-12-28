@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once("lib/Models/News.php");
 require_once("lib/Page.php");
+require_once("lib/Models/News.php");
 
 if(isset($_GET['id'])) {
 	// save the variable

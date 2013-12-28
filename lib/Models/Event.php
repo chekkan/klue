@@ -1,4 +1,5 @@
 <?php
+
 require_once(LIB_PATH."Table.php");
 
 
@@ -30,5 +31,6 @@ class Event extends Table {
 
 }
 
+Event::init();
 
 ?>

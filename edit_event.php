@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once("lib/Models/Event.php");
 require_once("lib/Page.php");
+require_once("lib/Models/Event.php");
 
 if(isset($_GET['id'])) {
 	$event_id = $_GET['id'];

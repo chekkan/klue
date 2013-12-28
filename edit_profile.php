@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once("lib/Models/User.php");
 require_once("lib/Page.php");
+require_once("lib/Models/User.php");
 
 // make sure the user is logged in
 if(!isset($_SESSION['logged_in'])) {

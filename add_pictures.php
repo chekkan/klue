@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once(LIB_PATH."Album.php");
-require_once(LIB_PATH."Photograph.php");
-require_once(LIB_PATH."Page.php");
+require_once("lib/Page.php");
+require_once("lib/Models/Album.php");
+require_once("lib/Models/Photograph.php");
 
 // check if the user is logged in
 if(!isset($_SESSION['logged_in'])) {
