@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `user_id` int(5) NOT NULL,
   `date_taken` date DEFAULT NULL,
   `time_created` datetime NOT NULL,
+  `time_modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -42,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `albums` (
 -- Dumping data for table `albums`
 --
 
-INSERT INTO `albums` (`id`, `title`, `location`, `description`, `user_id`, `date_taken`, `time_created`) VALUES
-(3, 'Christmas Celebrations', 'St Gregories Social Club', '', 3, '2011-12-26', '2011-12-30 15:53:51');
+INSERT INTO `albums` (`id`, `title`, `location`, `description`, `user_id`, `date_taken`, `time_created`, `time_modified`) VALUES
+(3, 'Christmas Celebrations', 'St Gregories Social Club', '', 3, '2011-12-26', '2011-12-30 15:53:51', '2011-12-30 15:53:51');
 
 -- --------------------------------------------------------
 

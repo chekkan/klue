@@ -13,6 +13,7 @@ class Album {
 	public $user_id;
 	public $date_taken;
 	public $time_created;
+	public $time_modified;
 	
 	public static function exists($id) {
 		$database = new MySqlDatabase();
@@ -83,6 +84,7 @@ class Album {
 				$album->user_id = $row['user_id'];
 				$album->date_taken = $row['date_taken'];
 				$album->time_created = $row['time_created'];
+				$album->time_modified = $row['time_modified'];
 				array_push($albums, $album);
 			}
 		}
@@ -92,10 +94,10 @@ class Album {
 	
 	public function create() {
 		$database = new MySqlDatabase();
-		$this->time_created = date("Y-m-d H:i:s");
-		$sql = "INSERT INTO albums(title, location, description, user_id, date_taken, time_created)
+		$this->time_created = $this->time_modified = date("Y-m-d H:i:s");
+		$sql = "INSERT INTO albums(title, location, description, user_id, date_taken, time_created, time_modified)
 				VALUES(\"{$this->title}\", \"{$this->location}\", \"{$this->description}\", 
-						{$this->user_id}, \"{$this->date_taken}\", \"{$this->time_created}\");";
+						{$this->user_id}, \"{$this->date_taken}\", \"{$this->time_created}\", \"{$this->time_modified}\");";
 		$result = $database->query($sql);
 		if($database->affected_rows() == 1)	{
 			$this->id = $database->insert_id();
@@ -108,12 +110,14 @@ class Album {
 	
 	public function update() {
 		$database = new MySqlDatabase();
+		$this->time_modified = date("Y-m-d H:i:s");
 		$sql = "UPDATE albums
 				SET title=\"{$this->title}\", 
 					location=\"{$this->location}\", 
 					description=\"{$this->description}\",
 					user_id={$this->user_id}, 
-					date_taken=\"{$this->date_taken}\"
+					date_taken=\"{$this->date_taken}\",
+					time_modified=\"{$this->time_modified}\"
 				WHERE id={$this->id};";
 		$result = $database->query($sql);
 		if($database->affected_rows() == 1) {
