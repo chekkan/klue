@@ -21,6 +21,11 @@ if(isset($_GET['id'])) {
 		echo $page->header("Gallery");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php"));
 		echo "<h2>{$album->title}</h2>";
+		echo "<dl><dt>Location</dt>
+				<dd>{$album->location}</dd>
+				<dt>Description</dt>
+				<dd>{$album->description}</dd>
+			</dl>";
 		// check if the user is logged in
 		if(isset($_SESSION['logged_in'])) {
 			echo "<p>
