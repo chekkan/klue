@@ -5,7 +5,6 @@ require_once(LIB_PATH."Table.php");
 class EventComment extends Table {
 
 	protected static $table_name = "event_comments";
-	protected static $db_fields = array();
 	
 	public $id;
 	public $message;

@@ -14,19 +14,6 @@ class Album extends Table {
 	public $date_taken;
 	public $time_created;
 	public $time_modified;
-	
-	public static function exists($id) {
-		global $database;
-		$sql = "SELECT id FROM ".self::$table_name." WHERE id = {$id};";
-		$result = $database->query($sql);
-		
-		if($database->num_rows($result) == 1) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
 	public function create() {
         // TODO: this could be done in parent method.

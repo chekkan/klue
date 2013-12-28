@@ -6,7 +6,6 @@ require_once(LIB_PATH."Table.php");
 class Level extends Table {
 
 	protected static $table_name = "levels";
-	protected static $db_fields = array();
 	
 	public $id;
 	public $title;

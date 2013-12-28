@@ -7,6 +7,8 @@ class Table {
 	protected static $table_name;
 	protected static $db_fields = array();
 
+    public $id;
+
 	public static function init() {
 		self::$db_fields = self::initDbFields();
 	}
@@ -76,6 +78,13 @@ class Table {
 		$sql = "SELECT * FROM ".static::$table_name.";";
 		return self::find_by_sql($sql);
 	}
+
+    public static function exists($id) {
+        global $database;
+        $sql = "SELECT id FROM ".static::$table_name." WHERE id = {$id};";
+        $result = $database->query($sql);
+        return ($database->num_rows($result) == 1) ? true : false;
+    }
 
 	public function save() {		
 		return (isset($this->id)) ? $this->update() : $this->create();

@@ -5,7 +5,6 @@ require_once(LIB_PATH."Table.php");
 class News extends Table{
 
 	protected static $table_name = "news";
-	protected static $db_fields = array();
 	
 	public $id;
 	public $title;
@@ -16,14 +15,6 @@ class News extends Table{
 	
 	public function get_summary() {
 		return $this->message;
-	}
-
-	public static function exists($id=0) {
-		global $database;
-		$sql = "SELECT id FROM ".self::$table_name;
-		$sql .= " WHERE id={$id};";
-		$result = $database->query($sql);
-		return ($database->num_rows($result) == 1) ? true : false;
 	}
 
 	public function create() {

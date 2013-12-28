@@ -5,7 +5,6 @@ require_once(LIB_PATH."Table.php");
 class Comment extends Table {
 
 	protected static $table_name = "photo_comments";
-	public static $db_fields = array();
 	
 	public $id;
 	public $message;
