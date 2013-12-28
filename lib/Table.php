@@ -6,7 +6,7 @@ class Table {
 
 	protected static $table_name;
 	protected static $db_fields = array();
-	
+
 	public static function init() {
 		self::$db_fields = self::initDbFields();
 	}
@@ -84,7 +84,6 @@ class Table {
 	public function create() {
 		global $database;
 		
-		// $this->time_created = date("Y-m-d H:i:s");
 		$attributes = $this->attributes();
 		
 		$sql = "INSERT INTO ".static::$table_name."(";
@@ -103,7 +102,7 @@ class Table {
 			$this->id = $database->insert_id();
 			return true;
 		}
-		else { 
+		else {
 			return false;
 		}
 	}
