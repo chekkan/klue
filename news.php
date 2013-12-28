@@ -57,7 +57,7 @@ if(isset($_GET['id'])) {
 		}
 		echo "<h2>{$news->title}</h2>";
 		echo "<span class=\"blog_details\">
-				{$blog_user->full_name()} on 
+				<a href=\"profiles.php?id={$blog_user->id}\">{$blog_user->full_name()}</a> on 
 				".date("d F Y", $news->time_posted)."
 			</span>";
 		echo "<p>{$news->message}</p>";
