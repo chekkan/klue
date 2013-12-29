@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once("lib/Models/Event.php");
 require_once("lib/Page.php");
+require_once("lib/Models/Event.php");
 
 // make sure the user is logged in before letting them see this page
 if(!isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == false) {

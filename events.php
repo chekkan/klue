@@ -69,7 +69,7 @@ if(isset($_GET['id'])) {
 	
 	$form = (isset($error_messages)) ? new FormHelper($error_messages) : new FormHelper();
 	echo $form->start($_SERVER['PHP_SELF']."?id={$event->id}");
-	echo $form->textarea(array("label" => "Comment", "name" => "message", "id" => "message"));
+	echo $form->textarea(array("name" => "message", "id" => "message", "placeholder" => "Please make a comment"));
 	echo $form->end("Comment");
 
 	if(empty($comments)) {

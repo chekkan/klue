@@ -68,7 +68,7 @@ if(isset($_GET['id'])) {
 				<h2>Comments</h2>";
 		$form = (isset($error_messages)) ? new FormHelper($error_messages) : new FormHelper();
 		echo $form->start($_SERVER['PHP_SELF']."?id=".$news->id);
-		echo $form->textarea(array("label" => "Comment", "name" => "message", "id" => "message"));
+		echo $form->textarea(array("name" => "message", "id" => "message", "placeholder" => "Please make a comment"));
 		echo $form->end("Comment");
 		if(empty($comments)) {
 			echo "<p>No comments.</p>";

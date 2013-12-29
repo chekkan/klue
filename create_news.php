@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-require_once("lib/Models/News.php");
 require_once("lib/Page.php");
+require_once("lib/Models/News.php");
+require_once("lib/FormHelper.php");
 
 // if the user is not logged in
 if(!isset($_SESSION['logged_in'])) {
@@ -44,55 +45,17 @@ if(isset($_POST['post'])) {
 }
 
 $page = new Page();
-$page->title = "Create &lt; News &lt; Craften";
-$page->heading = "Craften";
+$page->title = "Create &lt; News &lt; Klue";
+$page->heading = "Klue";
 echo $page->header("News");
 echo $page->breadcrumb(array("Home"=>"index.php", "News"=>"news.php"));
-?>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal" role="form">
-	<h2>Create News</h2>
-	<?php if (isset($error_messages['main'])) {
-		echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
-	}?>
-	<div class="form-group">
-		<label for="title" class="col-sm-2 control-label">Title</label>
-		<div class="col-sm-10">
-			<input type="text" name="title" id="title" class="form-control" placeholder="Title"
-				<?php if(isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; } ?>
-			/>
-			<?php if (isset($error_messages['title'])) {
-				echo "<p class=\"text-danger\">{$error_messages['title']}</p>";
-			}?>
-		</div>
-		</div>
-	<div class="form-group">
-		<label for="message" class="col-sm-2 control-label">Message</label>
-		<div class="col-sm-10">
-			<textarea name="message" id="message" class="form-control" placeholder="Message"><?php 
-				if(isset($_POST['message'])) { echo $_POST['message']; } 
-			?></textarea>
-			<?php if (isset($error_messages['message'])) {
-				echo "<p class=\"text-danger\">{$error_messages['message']}</p>";
-			}?>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" name="draft" value="true" 
-						<?php if(isset($_POST['draft'])) { echo "checked=true"; } ?>
-					/> Draft
-				</label>
-			</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-2">
-			<input type="submit" name="post" value="Post" class="btn btn-default" />
-		</div>
-	</div>
-</form>
-<?php
+
+$form = (isset($error_messages)) ? new FormHelper($error_messages) : new FormHelper();
+echo $form->start(array("heading" => "Create News", "class" => "form-horizontal"));
+echo $form->text(array("name" => "title", "label" => "Title", "placeholder"=>"Title"));
+echo $form->textarea(array("label" => "Message", "name" => "message", "id" => "Message", "placeholder" => "Message"));
+echo $form->checkbox("");
+echo $form->end("Post");
+
 echo $page->footer();
 ?>
