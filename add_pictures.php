@@ -51,7 +51,7 @@ else {
 		$page = new Page();
 		$page->title = "Upload Pictures &lt; {$album->title} &lt; Craften";
 		$page->add_css("css/add_pictures.css");
-		$page->add_script("scripts/add_pictures.js");
+		$page->add_script("js/add_pictures.js");
 		echo $page->header("Gallery");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Gallery"=>"albums.php", 
 								$album->title=>"albums.php?id={$album->id}"));
