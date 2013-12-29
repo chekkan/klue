@@ -143,31 +143,19 @@ class FormHelper {
             $name = $params;
         }
 
-        if (!isset($id)) {
-            // check if name is given
-            if (!isset($name)) {
-
-            } else {
-                $id = ucfirst(strtolower($name));
-            }
-        }
-
-        if (!isset($name)) {
-            if (!isset($id)) {
-            } else {
-                $name = strtolower($id);
-            }
-        }
-
 		$return = "<div class=\"form-group\">";
 
         if (isset($params['label'])) {
-        $return .= "<label for=\"{$id}\" class=\"control-label";
-            if ($this->is_horizontal) {
-                $return .= " col-sm-2";
-            }
-            $return .= "\">";
-            $return .= $params['label']."</label>";
+        $return .= "\n\r\t<label";
+        if (isset($id)) {
+            $return .= " for=\"{$id}\"";
+        }
+        $return .= " class=\"control-label";
+        if ($this->is_horizontal) {
+            $return .= " col-sm-2";
+        }
+        $return .= "\">";
+        $return .= $params['label']."</label>";
         }
 
 		$return .= "\n\r\t<div";
