@@ -45,7 +45,7 @@ class FormHelper {
         $return .= ">";
 
         if (isset($params['heading'])) {
-            $return .= "<h2>{$params['heading']}</h2>";
+            $return .= "\n\r\t<h2>{$params['heading']}</h2>";
         }
 		if(isset($this->error_messages['main'])) {
 			$return .= "<p class=\"text-danger\">{$this->error_messages['main']}</p>";

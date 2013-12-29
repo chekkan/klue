@@ -9,6 +9,15 @@
 class FormHelperTest extends PHPUnit_Framework_TestCase {
 
     /**
+     * @dataProvider startDataProvider
+     */
+    public function testStartMethodReturnExpected($params, $expected) {
+        $sut = new FormHelper();
+        $actual = $sut->start($params);
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
      * @dataProvider textDataProvider
      */
     public function testTextMethodReturnExpected($params, $expected) {
@@ -86,4 +95,40 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
         );
     }
 
+    public function startDataProvider() {
+        return array(
+            array(
+                null,
+                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">"
+            ),
+            array(
+                "self",
+                "<form action=\"self\" method=\"post\" role=\"form\">"
+            ),
+            array(
+                array("invalid" => ""),
+                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">"
+            ),
+            array(
+                array("action" => "self"),
+                "<form action=\"self\" method=\"post\" role=\"form\">"
+            ),
+            array(
+                array("method" => "foo"),
+                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"foo\" role=\"form\">"
+            ),
+            array(
+                array("class" => "foo"),
+                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\" class=\"foo\">"
+            ),
+            array(
+                array("action" => "foo", "method" => "bar", "class" => "baz"),
+                "<form action=\"foo\" method=\"bar\" role=\"form\" class=\"baz\">"
+            ),
+            array(
+                array("heading" => "foo"),
+                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">\n\r\t<h2>foo</h2>"
+            )
+        );
+    }
 }
