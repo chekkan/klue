@@ -3,6 +3,7 @@
 class FormHelper {
 	
 	private $error_messages = array();
+    private $is_horizontal;
 	
 	public function __construct($error_messages="") {
 		if(!empty($error_messages) && is_array($error_messages)) {
@@ -33,9 +34,19 @@ class FormHelper {
 		if(!isset($action)) {
 			$action = $_SERVER['PHP_SELF'];
 		}
-		$return =<<<EOD
-		<form action="{$action}" method="{$method}" role="form">
-EOD;
+
+        $return = "<form action=\"{$action}\" method=\"{$method}\" role=\"form\"";
+        if (isset($params['class'])) {
+            $return .= " class=\"{$params['class']}\"";
+            if ($params['class'] == "form-horizontal") {
+                $this->is_horizontal = true;
+            }
+        }
+        $return .= ">";
+
+        if (isset($params['heading'])) {
+            $return .= "<h2>{$params['heading']}</h2>";
+        }
 		if(isset($this->error_messages['main'])) {
 			$return .= "<p class=\"text-danger\">{$this->error_messages['main']}</p>";
 		}
@@ -61,12 +72,18 @@ EOD;
 				$value = $params;
 			}
 		}
-		$return =<<<EOD
-			<div class="form-group">
-				<input type="submit" name="{$name}" value="{$value}" class="btn btn-default" />
-			</div>
-		</form>
-EOD;
+
+		$return = "<div class=\"form-group\">";
+        if ($this->is_horizontal) {
+            $return .= "<div class=\"col-sm-offset-2 col-sm-10\">";
+        }
+		$return .= "<input type=\"submit\" name=\"{$name}\" value=\"{$value}\" class=\"btn btn-default\" />";
+        if ($this->is_horizontal) {
+            $return .= "</div>";
+        }
+		$return .="</div>
+		        </form>";
+
 		return $return;
 	}
 	
@@ -118,90 +135,139 @@ EOD;
 			if(isset($params['id'])) {
 				$id = $params['id'];
 			}
-			if(isset($params['label'])) {
-				$label = $params['label'];
-			}
 			if(isset($params['name'])) {
 				$name = $params['name'];
 			}
 		}
-		else {
-			if(empty($params)) {
-				$id = "default";
-				$label = "Default";
-				$name = "default";
-			}
-			else {
-				$name = $params;
-				$label = $params;
-				$id = $params;
-			}
-		}
-		// var $value
-		if(isset($_POST[$name])) {
-			$value = $_POST[$name];
-		}
-		else if(isset($params['value'])) {
-			$value = $params['value'];
-		}
-		else {
-			$value = "";
-		}
-		$return =<<<EOD
-		<div class="text">
-			<label for="{$id}">{$label}</label>
-EOD;
-		if(isset($this->error_messages[$name])) {
-			$return .= "<p class=\"error\">{$this->error_messages[$name]}</p>";
-		}
-		$return .=<<<EOD
-			<input type="text" name="{$name}" id="{$id}" value="{$value}" />
-		</div>
-EOD;
+		else if (!empty($params)) {
+            $name = $params;
+        }
+
+        if (!isset($id)) {
+            // check if name is given
+            if (!isset($name)) {
+                $name = "default";
+            } else {
+                $id = ucfirst(strtolower($name));
+            }
+        }
+
+        if (!isset($name)) {
+            if (!isset($id)) {
+                $name = "default";
+            } else {
+                $name = strtolower($id);
+            }
+        }
+
+		$return = "<div class=\"form-group\">";
+
+        if (isset($params['label'])) {
+        $return .= "<label for=\"{$id}\" class=\"control-label";
+            if ($this->is_horizontal) {
+                $return .= " col-sm-2";
+            }
+            $return .= "\">";
+            $return .= $params['label']."</label>";
+        }
+
+		$return .= "<div";
+        if ($this->is_horizontal) {
+            $return .= " class=\"col-sm-10\"";
+        }
+        $return .= ">";
+        $return .= "<input type=\"text\" name=\"{$name}\" id=\"{$id}\" class=\"form-control\"";
+
+        if (isset($params['value'])) {
+            $return .= " value=\"{$params['value']}\"";
+        } else if (isset($_POST[$name])) {
+            $return .= " value=\"{$_POST[$name]}\"";
+        }
+
+        if (isset($params['placeholder'])) {
+            $return .= " placeholder=\"{$params['placeholder']}\"";
+        }
+
+        $return .= "/>";
+
+        if(isset($this->error_messages[$name])) {
+            $return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
+        }
+
+        $return .= "</div>
+                </div>" ;
+
 		return $return;
 	}
-	
-	public function textarea($params="") {
-		if (is_array($params)) {
+
+    /**
+     * @param string|array $params
+     * if $params is string, defaults to name attribute
+     * @return string
+     *
+     */
+    public function textarea($params="") {
+        if (is_array($params)) {
 			if (isset($params['id'])) {
 				$id = $params['id'];
-			}
-			if (isset($params['label'])) {
-				$label = $params['label'];
 			}
 			if (isset($params['name'])) {
 				$name = $params['name'];
 			}
-		}
-		
-		//TODO: what if name is not given, but only id or name is given through using param array
-				
-		if (!isset($name)) {
-			$name = (!empty($params)) ? strtolower($params) : "default";
-		}
+		} else if (!empty($params)) {
+            $name = strtolower($params);
+        }
+
 		if (!isset($id)) {
-			$id = ucfirst($name);
+            // check if name is given
+            if (!isset($name)) {
+                $name = "default";
+            } else {
+                $id = ucfirst(strtolower($name));
+            }
 		}
-		if (!isset($label)) {
-			$label = $id;
-		}
+
+        if (!isset($name)) {
+            if (!isset($id)) {
+                $name = "default";
+            } else {
+                $name = strtolower($id);
+            }
+        }
 		
-		$return =<<<EOD
-		<div class="form-group">
-			<label for="{$id}" class="control-label">{$label}</label>
-			<div>
-				<textarea name="{$name}" id="{$id}" class="form-control"></textarea>
-EOD;
+		$return = "<div class=\"form-group\">";
+        if (isset($params['label'])) {
+            $return .= "<label for=\"{$id}\" class=\"control-label";
+            if ($this->is_horizontal) {
+                $return .= " col-sm-2";
+            }
+            $return .= "\">";
+            $return .= $params['label']."</label>";
+        }
+
+        $return .= "<div";
+        if ($this->is_horizontal) {
+            $return .= " class=\"col-sm-10\"";
+        }
+        $return .= ">";
+
+        $return .="<textarea name=\"{$name}\" id=\"{$id}\" class=\"form-control\"";
+        if (isset($params['placeholder'])) {
+            $return .= " placeholder=\"{$params['placeholder']}\"";
+        }
+        $return .= ">";
+        if (isset($_POST[$name])) {
+            $return .= $_POST[$name];
+        }
+        $return .="</textarea>";
 		if (isset($this->error_messages[$name])) { 
 			$return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
 		}
-		$return .=<<<EOD
-			</div>
-		</div>
-EOD;
+		$return .= "</div>
+		           </div>";
 		return $return;
 	}
-	
+
 	public function email($params="") {
 		if(is_array($params)) {
 			if(isset($params['id'])) {
@@ -326,7 +392,21 @@ EOD;
 EOD;
 		return $return;
 	}
-	
+
+    public function checkbox($params="") {
+        $return = "<div class=\"form-group\">
+            <div class=\"col-sm-offset-2 col-sm-10\">
+                <div class=\"checkbox\">
+                    <label><input type=\"checkbox\" name=\"draft\"";
+        if (isset($_POST['draft'])) {
+            $return .= " checked=\"checked\"";
+        }
+        $return .= ">Draft</label>
+                </div>
+            </div>
+        </div>";
+        return $return;
+    }
 }
 
 ?>
