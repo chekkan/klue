@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once("lib/config.php");
 require_once("lib/Models/News.php");
 
 // make sure the user is logged in.
@@ -18,7 +19,7 @@ if(isset($_GET['id'])) {
 	}
 	else {
 		// delete the news
-		$deleted = News::exists($news_id)? delete($news_id) : false;
+		$deleted = News::exists($news_id)? News::find_by_id($news_id)->delete($news_id) : false;
 		if($deleted) {
 			header("Location: news.php");
 		}
