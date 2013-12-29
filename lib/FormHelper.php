@@ -146,7 +146,7 @@ class FormHelper {
         if (!isset($id)) {
             // check if name is given
             if (!isset($name)) {
-                $name = "default";
+
             } else {
                 $id = ucfirst(strtolower($name));
             }
@@ -154,7 +154,6 @@ class FormHelper {
 
         if (!isset($name)) {
             if (!isset($id)) {
-                $name = "default";
             } else {
                 $name = strtolower($id);
             }
@@ -171,19 +170,22 @@ class FormHelper {
             $return .= $params['label']."</label>";
         }
 
-		$return .= "<div";
+		$return .= "\n\r\t<div";
         if ($this->is_horizontal) {
             $return .= " class=\"col-sm-10\"";
         }
         $return .= ">";
-        $return .= "<input type=\"text\" name=\"{$name}\" class=\"form-control\"";
+        $return .= "\n\r\t\t<input type=\"text\" class=\"form-control\"";
+        if (isset($name)) {
+            $return .= " name=\"{$name}\"";
+        }
         if (isset($id)) {
             $return .= " id=\"{$id}\"";
         }
 
         if (isset($params['value'])) {
             $return .= " value=\"{$params['value']}\"";
-        } else if (isset($_POST[$name])) {
+        } else if ( isset($name) && isset($_POST[$name])) {
             $return .= " value=\"{$_POST[$name]}\"";
         }
 
@@ -193,12 +195,11 @@ class FormHelper {
 
         $return .= " />";
 
-        if(isset($this->error_messages[$name])) {
+        if(isset($name) && isset($this->error_messages[$name])) {
             $return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
         }
 
-        $return .= "</div>
-                </div>" ;
+        $return .= "\n\r\t</div>\n\r</div>" ;
 
 		return $return;
 	}
