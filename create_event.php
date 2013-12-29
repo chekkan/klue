@@ -3,6 +3,7 @@ session_start();
 
 require_once("lib/Page.php");
 require_once("lib/Models/Event.php");
+require_once("lib/FormHelper.php");
 
 // make sure the user is logged in before letting them see this page
 if(!isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == false) {
@@ -53,73 +54,14 @@ $page->title = "Create &lt; Event &lt; Craften";
 $page->heading = "Craften";
 echo $page->header("Events");
 echo $page->breadcrumb(array("Home"=>"index.php", "Events"=>"events.php"));
-?>
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" role="form" class="form-horizontal">
-	<h2>Create Event</h2>
-	<?php if (isset($error_messages['main'])) {
-		echo "<p class=\"text-danger\">{$error_messages['main']}</p>";
-	}?>
-	<div class="form-group">
-		<label for="title" class="col-sm-2 control-label">Title</label>
-		<div class="col-sm-10">
-			<input type="text" name="title" id="title" class="form-control" placeholder="Event title"
-				<?php if (isset($_POST['title'])) { echo "value=\"{$_POST['title']}\""; } ?>
-			/>
-			<?php if (isset($error_messages['title'])) {
-				echo "<p class=\"text-danger\">{$error_messages['title']}</p>";
-			}?>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="date" class="col-sm-2 control-label">Date</label>
-		<div class="col-sm-10">
-			<input type="date" name="date" id="date" class="form-control" placeholder="YYYY-MM-DD"
-				<?php if (isset($_POST['date'])) { echo "value=\"{$_POST['date']}\""; } ?>
-			/>
-			<?php if (isset($error_messages['date'])) {
-				echo "<p class=\"text-danger\">{$error_messages['date']}</p>";
-			}?>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="venue" class="col-sm-2 control-label">Venue</label>
-		<div class="col-sm-10">
-			<input type="text" name="venue" id="venue" class="form-control" placeholder="Venue"
-				<?php if (isset($_POST['venue'])) { echo "value=\"{$_POST['venue']}\""; } ?>
-			/>
-			<?php if (isset($error_messages['venue'])) {
-				echo "<p class=\"text-danger\">{$error_messages['venue']}</p>";
-			}?>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="description" class="col-sm-2 control-label">Description</label>
-		<div class="col-sm-10">
-			<textarea name="description" id="description" class="form-control" placeholder="Description"><?php if (isset($_POST['description'])) { echo $_POST['description']; } ?></textarea>
-			<?php if (isset($error_messages['description'])) {
-				echo "<p class=\"text-danger\">{$error_messages['description']}</p>";
-			}?>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" name="draft" value="true" 
-						<?php if(isset($_POST['draft'])) { echo "checked=true "; } ?>
-					/> Draft
-				</label>
-			</div>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<input type="submit" name="create" value="Create" class="btn btn-default" />
-		</div>
-	</div>
-</form>
+$form = (isset($error_messages)) ? new FormHelper($error_messages) : new FormHelper();
+echo $form->start(array("class"=>"form-horizontal", "heading"=>"Create Event"));
+echo $form->text(array("name" => "title", "label"=>"Title", "placeholder"=>"Title"));
+echo $form->date(array("name"=>"date", "label"=>"Date"));
+echo $form->text(array("name"=>"venue", "label"=>"Venue", "placeholder"=>"Venue"));
+echo $form->textarea(array("name"=>"description", "label"=>"Description","placeholder"=>"Description"));
+echo $form->end("Create");
 
-<?php
 echo $page->footer();
 ?>
