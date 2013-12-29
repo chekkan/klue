@@ -163,7 +163,7 @@ else if(isset($_GET['id'])) {
 	$user = User::find_by_id($_GET['id']);
 	$page = new AdminPage();
 	$page->title = $user->full_name()." &lt; Users &lt; Administration";
-	$page->add_css("styles/users.css");
+	$page->add_css("css/users.css");
 	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";
@@ -284,7 +284,7 @@ else if(isset($_GET['action'])) {
 else {
 	$page = new AdminPage();
 	$page->title = "User Settings &lt; Administration";
-	$page->add_css("styles/users.css");
+	$page->add_css("css/users.css");
 	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";

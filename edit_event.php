@@ -62,7 +62,7 @@ if(isset($_GET['id'])) {
 		$page = new Page();
 		$page->title = "Edit &lt; Event &lt; Craften";
 		$page->heading = "Craften";
-		$page->add_css("styles/edit_event.css");
+		$page->add_css("css/edit_event.css");
 		echo $page->header("Events");
 		echo $page->breadcrumb(array("Home"=>"index.php", "Events"=>"events.php", $event->title=>"events.php?id={$event->id}"));
 		?>

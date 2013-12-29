@@ -71,7 +71,7 @@ if(isset($_POST['register'])) {
 
 $page = new Page();
 $page->title = "Register";
-$page->add_css("styles/register.css");
+$page->add_css("css/register.css");
 echo $page->header("Register");
 ?>
 

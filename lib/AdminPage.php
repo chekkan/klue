@@ -24,7 +24,7 @@ class AdminPage extends Page {
 			<title>{$this->title}</title>
 			<link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
 			<link href='http://fonts.googleapis.com/css?family=Magra:400,700' rel='stylesheet' type='text/css'>
-			<link rel=\"stylesheet\" href=\"styles/master.css\" type=\"text/css\" media=\"screen\" title=\"Master StyleSheet\" charset=\"utf-8\" />";
+			<link rel=\"stylesheet\" href=\"css/master.css\" type=\"text/css\" media=\"screen\" title=\"Master StyleSheet\" charset=\"utf-8\" />";
 		foreach ($this->stylesheets as $link) {
 			$return .= "<link rel=\"stylesheet\" href=\"{$link}\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />";
 		}

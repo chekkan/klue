@@ -32,8 +32,8 @@ class Page {
 			<html>
 			<head>
 			<title>{$this->title}</title>
-			<link rel=\"stylesheet\" href=\"styles/bootstrap.css\" type=\"text/css\" media=\"screen\" title=\"Bootstrap\" charset=\"utf-8\" />
-			<link rel=\"stylesheet\" href=\"styles/master.css\" type=\"text/css\" media=\"screen\" title=\"Master StyleSheet\" charset=\"utf-8\" />";
+			<link rel=\"stylesheet\" href=\"css/bootstrap.css\" type=\"text/css\" media=\"screen\" title=\"Bootstrap\" charset=\"utf-8\" />
+			<link rel=\"stylesheet\" href=\"css/master.css\" type=\"text/css\" media=\"screen\" title=\"Master StyleSheet\" charset=\"utf-8\" />";
 		foreach ($this->stylesheets as $link) {
 			$return .= "<link rel=\"stylesheet\" href=\"{$link}\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />";
 		}

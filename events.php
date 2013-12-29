@@ -99,7 +99,7 @@ else {
 	$page = new Page();
 	$page->title = "Events";
 	$page->heading = "Craften";
-	$page->add_css("styles/events.css");
+	$page->add_css("css/events.css");
 	echo $page->header("Events");
 	echo $page->breadcrumb(array("Home"=>"index.php"));
 	echo "<h2>Events</h2>";

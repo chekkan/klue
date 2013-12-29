@@ -50,8 +50,8 @@ if(isset($_POST['create'])) {
 }
 
 $page = new Page();
-$page->title = "Create &lt; Event &lt; Craften";
-$page->heading = "Craften";
+$page->title = "Create &lt; Event &lt; Klue";
+$page->heading = "Klue";
 echo $page->header("Events");
 echo $page->breadcrumb(array("Home"=>"index.php", "Events"=>"events.php"));
 

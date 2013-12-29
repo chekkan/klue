@@ -48,7 +48,7 @@ if(isset($_POST['login'])) {
 
 $page = new Page();
 $page->title = "Login";
-$page->add_css("styles/login.css");
+$page->add_css("css/login.css");
 echo $page->header("Login");
 ?>
 

@@ -158,7 +158,7 @@ else if(isset($_GET['id'])) {
 	$level = Level::find_by_id($_GET['id']);
 	$page = new AdminPage();
 	$page->title = $level->title." &lt; User Groups &lt; Administration";
-	$page->add_css("styles/levels.css");
+	$page->add_css("css/levels.css");
 	echo $page->header("Users");
 	echo "<div id=\"main_content\">";
 	echo "<div id=\"page_heading\">";
