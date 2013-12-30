@@ -113,35 +113,35 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
         return array(
             array(
                 null,
-                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">"
+                "\n\r<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">"
             ),
             array(
                 "self",
-                "<form action=\"self\" method=\"post\" role=\"form\">"
+                "\n\r<form action=\"self\" method=\"post\" role=\"form\">"
             ),
             array(
                 array("invalid" => ""),
-                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">"
+                "\n\r<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">"
             ),
             array(
                 array("action" => "self"),
-                "<form action=\"self\" method=\"post\" role=\"form\">"
+                "\n\r<form action=\"self\" method=\"post\" role=\"form\">"
             ),
             array(
                 array("method" => "foo"),
-                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"foo\" role=\"form\">"
+                "\n\r<form action=\"{$_SERVER['PHP_SELF']}\" method=\"foo\" role=\"form\">"
             ),
             array(
                 array("class" => "foo"),
-                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\" class=\"foo\">"
+                "\n\r<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\" class=\"foo\">"
             ),
             array(
                 array("action" => "foo", "method" => "bar", "class" => "baz"),
-                "<form action=\"foo\" method=\"bar\" role=\"form\" class=\"baz\">"
+                "\n\r<form action=\"foo\" method=\"bar\" role=\"form\" class=\"baz\">"
             ),
             array(
                 array("heading" => "foo"),
-                "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">\n\r\t<h2>foo</h2>"
+                "\n\r<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">\n\r\t<h2>foo</h2>"
             )
         );
     }

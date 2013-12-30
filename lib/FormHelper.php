@@ -35,7 +35,7 @@ class FormHelper {
 			$action = $_SERVER['PHP_SELF'];
 		}
 
-        $return = "<form action=\"{$action}\" method=\"{$method}\" role=\"form\"";
+        $return = "\n\r<form action=\"{$action}\" method=\"{$method}\" role=\"form\"";
         if (isset($params['class'])) {
             $return .= " class=\"{$params['class']}\"";
             if ($params['class'] == "form-horizontal") {
