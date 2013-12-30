@@ -47,6 +47,15 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, $actual);
     }
 
+    //TODO: What if label wasn't set for $params?
+    public function testTextMethodReturnExpectedForHorizontalFormFormat() {
+        $expected = "\n\r\t<div class=\"form-group\">\n\r\t\t<label class=\"control-label col-sm-2\">foo</label>\n\r\t\t<div class=\"col-sm-10\">\n\r\t\t\t<input type=\"text\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>";
+        $sut = new FormHelper();
+        $sut->start(array("class" => "form-horizontal"));
+        $actual = $sut->text(array("label" => "foo"));
+        $this->assertEquals($expected, $actual);
+    }
+
     /**
      * @dataProvider dateDataProvider
      */
