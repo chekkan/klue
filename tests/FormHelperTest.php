@@ -46,6 +46,15 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @dataProvider dateDataProvider
+     */
+    public function testDateMethodReturnExpected($params, $expected) {
+        $sut = new FormHelper();
+        $actual = $sut->date($params);
+        $this->assertEquals($expected, $actual);
+    }
+
     public function textDataProvider() {
         return array(
             array(
@@ -113,6 +122,59 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
                 "<div class=\"form-group\">\n\r\t<label for=\"Foo\" class=\"control-label\">Bar</label>\n\r\t<div>\n\r\t\t<input type=\"text\" class=\"form-control\" name=\"foo\" id=\"Foo\" value=\"Bar\" placeholder=\"Foo\" />\n\r\t</div>\n\r</div>"
             )
         );
+    }
+
+    public function dateDataProvider() {
+       return array(
+           array(
+               null,
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               "",
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               "foo",
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" name=\"foo\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("invalid" => ""),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("name" => "foo"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" name=\"foo\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("id" => "foo"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" id=\"foo\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("placeholder" => "foo"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" placeholder=\"foo\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("value" => "foo"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" value=\"foo\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("label"=>"foo"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<label class=\"control-label\">foo</label>\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+                array("name" => "foo", "id" => "bar"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" name=\"foo\" id=\"bar\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("label" => "foo", "id" => "bar"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<label for=\"bar\" class=\"control-label\">foo</label>\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" id=\"bar\" />\n\r\t\t</div>\n\r\t</div>"
+           ),
+           array(
+               array("label" => "foo", "name" => "bar", "id" => "baz", "value" => "cat", "placeholder" => "daz"),
+               "\n\r\t<div class=\"form-group\">\n\r\t\t<label for=\"baz\" class=\"control-label\">foo</label>\n\r\t\t<div>\n\r\t\t\t<input type=\"date\" class=\"form-control\" name=\"bar\" id=\"baz\" value=\"cat\" placeholder=\"daz\" />\n\r\t\t</div>\n\r\t</div>"
+           )
+       );
     }
 
     public function startDataProvider() {

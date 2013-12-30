@@ -137,6 +137,65 @@ class FormHelper {
 		
 		return $return;
 	}
+
+    private function input($params) {
+        if(is_array($params)) {
+            if(isset($params['type'])) {
+                $type = $params['type'];
+            }
+        }
+        else if (!empty($params)) {
+            $type = $params;
+        }
+
+        $return = "\n\r\t<div class=\"form-group\">";
+
+        if (isset($params['label'])) {
+            $return .= "\n\r\t\t<label";
+            if (isset($params['id'])) {
+                $return .= " for=\"{$params['id']}\"";
+            }
+            $return .= " class=\"control-label";
+            if ($this->is_horizontal) {
+                $return .= " col-sm-2";
+            }
+            $return .= "\">";
+            $return .= $params['label']."</label>";
+        }
+
+        $return .= "\n\r\t\t<div";
+        if ($this->is_horizontal) {
+            $return .= " class=\"col-sm-10\"";
+        }
+        $return .= ">";
+        $return .= "\n\r\t\t\t<input type=\"{$type}\" class=\"form-control\"";
+        if (isset($params['name'])) {
+            $return .= " name=\"{$params['name']}\"";
+        }
+        if (isset($params['id'])) {
+            $return .= " id=\"{$params['id']}\"";
+        }
+
+        if (isset($params['value'])) {
+            $return .= " value=\"{$params['value']}\"";
+        } else if ( isset($name) && isset($_POST[$name])) {
+            $return .= " value=\"{$_POST[$name]}\"";
+        }
+
+        if (isset($params['placeholder'])) {
+            $return .= " placeholder=\"{$params['placeholder']}\"";
+        }
+
+        $return .= " />";
+
+        if(isset($name) && isset($this->error_messages[$name])) {
+            $return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
+        }
+
+        $return .= "\n\r\t\t</div>\n\r\t</div>" ;
+
+        return $return;
+    }
 	
 	public function text($params="") {
 		if(is_array($params)) {
@@ -360,63 +419,15 @@ EOD;
 	
 	public function date($params="") {
         if (is_array($params)) {
-            if (isset($params['id'])) {
-                $id = $params['id'];
-            }
-            if (isset($params['name'])) {
-                $name = $params['name'];
-            }
-        } else if (!empty($params)) {
-            $name = strtolower($params);
+            $dateParams = $params;
+            $dateParams['type'] = "date";
+        } else if (empty($params)) {
+            $dateParams = "date";
+        } else {
+            $dateParams["name"] = $params;
+            $dateParams["type"] = "date";
         }
-
-        if (!isset($id)) {
-            // check if name is given
-            if (!isset($name)) {
-                $name = "default";
-            } else {
-                $id = ucfirst(strtolower($name));
-            }
-        }
-
-        if (!isset($name)) {
-            if (!isset($id)) {
-                $name = "default";
-            } else {
-                $name = strtolower($id);
-            }
-        }
-
-		$return = "<div class=\"form-group\">";
-        if (isset($params['label'])) {
-            $return .= "<label class=\"control-label";
-            if ($this->is_horizontal) {
-                $return .= " col-sm-2";
-            }
-            if (isset($id)) {
-                $return .= "\" for=\"{$id}\"";
-            }
-            $return .= ">{$params['label']}</label>";
-        }
-
-		if(isset($this->error_messages[$name])) {
-			$return .= "<p class=\"error\">{$this->error_messages[$name]}</p>";
-		}
-		$return .= "<div";
-        if ($this->is_horizontal) {
-            $return .= " class=\"col-sm-10\"";
-        }
-        $return .= ">";
-        $return .= "<input type=\"date\" name=\"{$name}\" class=\"form-control\" ";
-        if (isset($id)) {
-            $return .= "id=\"{$id}\"";
-        }
-        $return .= "/>";
-
-        $return .= "</div>";
-
-	    $return .= "</div>";
-		return $return;
+        return $this->input($dateParams);
 	}
 
     public function checkbox($params="") {
