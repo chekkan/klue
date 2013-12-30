@@ -198,65 +198,16 @@ class FormHelper {
     }
 	
 	public function text($params="") {
-		if(is_array($params)) {
-			if(isset($params['id'])) {
-				$id = $params['id'];
-			}
-			if(isset($params['name'])) {
-				$name = $params['name'];
-			}
-		}
-		else if (!empty($params)) {
-            $name = $params;
+        if (is_array($params)) {
+            $dateParams = $params;
+            $dateParams['type'] = "text";
+        } else if (empty($params)) {
+            $dateParams = "text";
+        } else {
+            $dateParams["name"] = $params;
+            $dateParams["type"] = "text";
         }
-
-		$return = "<div class=\"form-group\">";
-
-        if (isset($params['label'])) {
-        $return .= "\n\r\t<label";
-        if (isset($id)) {
-            $return .= " for=\"{$id}\"";
-        }
-        $return .= " class=\"control-label";
-        if ($this->is_horizontal) {
-            $return .= " col-sm-2";
-        }
-        $return .= "\">";
-        $return .= $params['label']."</label>";
-        }
-
-		$return .= "\n\r\t<div";
-        if ($this->is_horizontal) {
-            $return .= " class=\"col-sm-10\"";
-        }
-        $return .= ">";
-        $return .= "\n\r\t\t<input type=\"text\" class=\"form-control\"";
-        if (isset($name)) {
-            $return .= " name=\"{$name}\"";
-        }
-        if (isset($id)) {
-            $return .= " id=\"{$id}\"";
-        }
-
-        if (isset($params['value'])) {
-            $return .= " value=\"{$params['value']}\"";
-        } else if ( isset($name) && isset($_POST[$name])) {
-            $return .= " value=\"{$_POST[$name]}\"";
-        }
-
-        if (isset($params['placeholder'])) {
-            $return .= " placeholder=\"{$params['placeholder']}\"";
-        }
-
-        $return .= " />";
-
-        if(isset($name) && isset($this->error_messages[$name])) {
-            $return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
-        }
-
-        $return .= "\n\r\t</div>\n\r</div>" ;
-
-		return $return;
+        return $this->input($dateParams);
 	}
 
     /**
