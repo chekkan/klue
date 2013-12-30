@@ -282,90 +282,29 @@ class FormHelper {
 	}
 
 	public function email($params="") {
-		if(is_array($params)) {
-			if(isset($params['id'])) {
-				$id = $params['id'];
-			}
-			if(isset($params['label'])) {
-				$label = $params['label'];
-			}
-			if(isset($params['name'])) {
-				$name = $params['name'];
-			}
-		}
-		else {
-			if(empty($params)) {
-				$id = "default";
-				$label = "Default";
-				$name = "default";
-			}
-			else {
-				$name = $params;
-				$label = $params;
-				$id = $params;
-			}
-		}
-		// var $value
-		if(isset($_POST[$name])) {
-			$value = $_POST[$name];
-		}
-		else if(isset($params['value'])) {
-			$value = $params['value'];
-		}
-		else {
-			$value = "";
-		}
-		
-		$return =<<<EOD
-		<div class="email">
-			<label for="{$id}">{$label}</label>
-EOD;
-		if(isset($this->error_messages[$name])) {
-			$return .= "<p class=\"error\">{$this->error_messages[$name]}</p>";
-		}
-		$return .=<<<EOD
-			<input type="email" name="{$name}" id="{$id}" value="{$value}" />
-		</div>
-EOD;
-		return $return;
+        if (is_array($params)) {
+            $dateParams = $params;
+            $dateParams['type'] = "email";
+        } else if (empty($params)) {
+            $dateParams = "email";
+        } else {
+            $dateParams["name"] = $params;
+            $dateParams["type"] = "email";
+        }
+        return $this->input($dateParams);
 	}
 	
 	public function password($params="") {
-		if(is_array($params)) {
-			if(isset($params['id'])) {
-				$id = $params['id'];
-			}
-			if(isset($params['label'])) {
-				$label = $params['label'];
-			}
-			if(isset($params['name'])) {
-				$name = $params['name'];
-			}
-		}
-		else {
-			if(empty($params)) {
-				$id = "default";
-				$label = "Default";
-				$name = "default";
-			}
-			else {
-				$name = $params;
-				$label = $params;
-				$id = $params;
-			}
-		}
-		$return =<<<EOD
-		<div class="password">
-			<label for="{$id}">{$label}</label>
-EOD;
-		if(isset($this->error_messages[$name])) {
-			$return .= "<p class=\"error\">{$this->error_messages[$name]}</p>";
-		}
-		$return .=<<<EOD
-			<input type="password" name="{$name}" id="{$id}" />
-		</div>
-EOD;
-		return $return;
+        if (is_array($params)) {
+            $dateParams = $params;
+            $dateParams['type'] = "password";
+        } else if (empty($params)) {
+            $dateParams = "password";
+        } else {
+            $dateParams["name"] = $params;
+            $dateParams["type"] = "password";
+        }
+        return $this->input($dateParams);
 	}
 	
 	public function date($params="") {

@@ -65,6 +65,26 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @dataProvider dateDataProvider
+     */
+    public function testEmailMethodReturnExpected($params, $expected) {
+        $expected = str_replace("date", "email", $expected);
+        $sut = new FormHelper();
+        $actual = $sut->email($params);
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @dataProvider dateDataProvider
+     */
+    public function testPasswordMethodReturnExpected($params, $expected) {
+        $expected = str_replace("date", "password", $expected);
+        $sut = new FormHelper();
+        $actual = $sut->password($params);
+        $this->assertEquals($expected, $actual);
+    }
+
     public function dateDataProvider() {
        return array(
            array(
