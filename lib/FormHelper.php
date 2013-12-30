@@ -54,36 +54,44 @@ class FormHelper {
 	}
 	
 	public function end($params="") {
-		if(is_array($params)) {
-			if(isset($params['name'])) {
-				$name = $params['name'];
-			}
-			if(isset($params['value'])) {
-				$value = $params['value'];
-			}
-		}
-		else {
-			if($params=="") {
-				$name = "submit";
-				$value = "Submit";
-			}
-			else {
-				$name = lcfirst(strtolower($params));
-				$value = $params;
-			}
-		}
+        $valid_attributes = array("value", "name", "id");
 
-		$return = "<div class=\"form-group\">";
-        if ($this->is_horizontal) {
-            $return .= "<div class=\"col-sm-offset-2 col-sm-10\">";
+        $return = "";
+        if (is_array($params)) {
+            // if $params contain at least one valid attribute
+            if (count(array_unique(array_merge(array_keys($params), $valid_attributes))) < count($params) + count($valid_attributes)) {
+                $return .= "\n\r\t<div class=\"form-group\">\n\r\t\t";
+                if ($this->is_horizontal) {
+                    $return .= "<div class=\"col-sm-offset-2 col-sm-10\">\n\r\t\t\t";
+                }
+                $return .= "<input type=\"submit\" class=\"btn btn-default\" ";
+                if (isset($params['name'])) {
+                    $return .= "name=\"{$params['name']}\" ";
+                }
+                if (isset($params['value'])) {
+                    $return .= "value=\"{$params['value']}\" ";
+                }
+                if (isset($params['id'])) {
+                    $return .= "id=\"{$params['id']}\" ";
+                }
+                $return .= "/>";
+                if ($this->is_horizontal) {
+                    $return .= "\n\r\t\t</div>";
+                }
+                $return .= "\n\r\t</div>";
+            }
+        } else if (!empty($params)) {
+            $return .= "\n\r\t<div class=\"form-group\">\n\r\t\t";
+            if ($this->is_horizontal) {
+                $return .= "<div class=\"col-sm-offset-2 col-sm-10\">\n\r\t\t\t";
+            }
+            $return .= "<input type=\"submit\" class=\"btn btn-default\" value=\"{$params}\" />";
+            if ($this->is_horizontal) {
+                $return .= "\n\r\t\t</div>";
+            }
+            $return .= "\n\r\t</div>";
         }
-		$return .= "<input type=\"submit\" name=\"{$name}\" value=\"{$value}\" class=\"btn btn-default\" />";
-        if ($this->is_horizontal) {
-            $return .= "</div>";
-        }
-		$return .="</div>
-		        </form>";
-
+        $return .= "\n\r</form>";
 		return $return;
 	}
 	

@@ -18,6 +18,26 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @dataProvider endDataProvider
+     */
+    public function testEndMethodReturnExpected($params, $expected) {
+        $sut = new FormHelper();
+        $actual = $sut->end($params);
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @dataProvider endHorizontalFormDataProvider
+     */
+    public function testEndMethodReturnExpectedForHorizontalForm($params, $expected) {
+        $expected = "\n\r\t<div class=\"form-group\">\n\r\t\t<div class=\"col-sm-offset-2 col-sm-10\">\n\r\t\t\t<input type=\"submit\" class=\"btn btn-default\" value=\"bar\" />\n\r\t\t</div>\n\r\t</div>\n\r</form>";
+        $sut = new FormHelper();
+        $sut->start(array("class" => "form-horizontal"));
+        $actual = $sut->end("bar");
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
      * @dataProvider textDataProvider
      */
     public function testTextMethodReturnExpected($params, $expected) {
@@ -28,10 +48,10 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
 
     public function textDataProvider() {
         return array(
-            [
+            array(
                 null,
                 "<div class=\"form-group\">\n\r\t<div>\n\r\t\t<input type=\"text\" class=\"form-control\" />\n\r\t</div>\n\r</div>"
-            ],
+            ),
             array(
                 "title",
                 "<div class=\"form-group\">\n\r\t<div>\n\r\t\t<input type=\"text\" class=\"form-control\" name=\"title\" />\n\r\t</div>\n\r</div>"
@@ -128,6 +148,60 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
             array(
                 array("heading" => "foo"),
                 "<form action=\"{$_SERVER['PHP_SELF']}\" method=\"post\" role=\"form\">\n\r\t<h2>foo</h2>"
+            )
+        );
+    }
+
+    public function endDataProvider() {
+        return array(
+            array(
+                null,
+                "\n\r</form>"
+            ),
+            array(
+                "Foo",
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<input type=\"submit\" class=\"btn btn-default\" value=\"Foo\" />\n\r\t</div>\n\r</form>"
+            ),
+            array(
+                array("value"=>"Foo"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<input type=\"submit\" class=\"btn btn-default\" value=\"Foo\" />\n\r\t</div>\n\r</form>"
+            ),
+            array(
+                array("invalid"=>""),
+                "\n\r</form>"
+            ),
+            array(
+                "",
+                "\n\r</form>"
+            ),
+            array(
+                array("name"=>"foo"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<input type=\"submit\" class=\"btn btn-default\" name=\"foo\" />\n\r\t</div>\n\r</form>"
+            ),
+            array(
+                array("id"=>"foo"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<input type=\"submit\" class=\"btn btn-default\" id=\"foo\" />\n\r\t</div>\n\r</form>"
+            ),
+            array(
+                array("value"=>"foo", "name"=>"bar"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<input type=\"submit\" class=\"btn btn-default\" name=\"bar\" value=\"foo\" />\n\r\t</div>\n\r</form>"
+            ),
+            array(
+                array("value"=>"foo", "name"=>"bar", "id"=>"baz"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<input type=\"submit\" class=\"btn btn-default\" name=\"bar\" value=\"foo\" id=\"baz\" />\n\r\t</div>\n\r</form>"
+            )
+        );
+    }
+
+    public function endHorizontalFormDataProvider() {
+        return array(
+            array(
+                "bar",
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<div class=\"col-sm-offset-2 col-sm-10\">\n\r\t\t\t<input type=\"submit\" class=\"btn btn-default\" value=\"bar\" />\n\r\t\t</div>\n\r\t</div>\n\r</form>"
+            ),
+            array(
+                array("value" => "bar"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<div class=\"col-sm-offset-2 col-sm-10\">\n\r\t\t\t<input type=\"submit\" class=\"btn btn-default\" value=\"bar\" />\n\r\t\t</div>\n\r\t</div>\n\r</form>"
             )
         );
     }
