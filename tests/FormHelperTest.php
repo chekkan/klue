@@ -56,6 +56,13 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, $actual);
     }
 
+    /** @dataProvider textWithErrorDataProvider */
+    public function testTextMethodWithErrorMessagesReturnExpected($params, $expected) {
+        $sut = new FormHelper(array("foo"=>"bar"));
+        $actual = $sut->text($params);
+        $this->assertEquals($expected, $actual);
+    }
+
     /**
      * @dataProvider dateDataProvider
      */
@@ -225,6 +232,23 @@ class FormHelperTest extends PHPUnit_Framework_TestCase {
             array(
                 array("value" => "bar"),
                 "\n\r\t<div class=\"form-group\">\n\r\t\t<div class=\"col-sm-offset-2 col-sm-10\">\n\r\t\t\t<input type=\"submit\" class=\"btn btn-default\" value=\"bar\" />\n\r\t\t</div>\n\r\t</div>\n\r</form>"
+            )
+        );
+    }
+
+    public function textWithErrorDataProvider() {
+        return array(
+            array(
+                null,
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"text\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>"
+            ),
+            array(
+                array(),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"text\" class=\"form-control\" />\n\r\t\t</div>\n\r\t</div>"
+            ),
+            array(
+                array("name"=>"foo"),
+                "\n\r\t<div class=\"form-group\">\n\r\t\t<div>\n\r\t\t\t<input type=\"text\" class=\"form-control\" name=\"foo\" />\n\r\t\t\t<p class=\"text-danger\">bar</p>\n\r\t\t</div>\n\r\t</div>"
             )
         );
     }

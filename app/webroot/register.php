@@ -75,12 +75,13 @@ $page->title = "Register";
 $page->add_css("../css/register.css");
 echo $page->header("Register");
 
-$form = new FormHelper();
+$form = isset($error_messages) ? new FormHelper($error_messages) : new FormHelper();
 echo $form->start(array("heading"=>"Register"));
 echo $form->text(array("label"=>"First Name", "name"=>"first_name", "id"=>"FirstName"));
 echo $form->text(array("label"=>"Last Name", "name"=>"last_name", "id"=>"LastName"));
 echo $form->email(array("label"=>"Email", "name"=>"email", "id"=>"Email"));
 echo $form->password(array("label"=>"Password", "name"=>"password", "id"=>"Password"));
+echo $form->password(array("label"=>"Confirm Password", "name"=>"confirm_password", "id"=>"ConfirmPassword"));
 echo $form->date(array("label"=>"Date of Birth", "name"=>"date_of_birth", "id"=>"DateOfBirth"));
 ?>
 	<div class="form-group">

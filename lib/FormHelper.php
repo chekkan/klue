@@ -4,8 +4,11 @@ class FormHelper {
 	
 	private $error_messages = array();
     private $is_horizontal;
-	
-	public function __construct($error_messages="") {
+
+    /**
+     * @param Array $error_messages
+     */
+    public function __construct($error_messages=array()) {
 		if(!empty($error_messages) && is_array($error_messages)) {
 			$this->error_messages = $error_messages;
 		}
@@ -188,8 +191,8 @@ class FormHelper {
 
         $return .= " />";
 
-        if(isset($name) && isset($this->error_messages[$name])) {
-            $return .= "<p class=\"text-danger\">{$this->error_messages[$name]}</p>";
+        if(isset($params['name']) && isset($this->error_messages[$params['name']])) {
+            $return .= "\n\r\t\t\t<p class=\"text-danger\">{$this->error_messages[$params['name']]}</p>";
         }
 
         $return .= "\n\r\t\t</div>\n\r\t</div>" ;
